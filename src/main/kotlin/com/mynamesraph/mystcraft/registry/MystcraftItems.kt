@@ -19,7 +19,7 @@ import net.neoforged.neoforge.registries.DeferredRegister
 import org.joml.Vector3f
 
 object MystcraftItems {
-    private val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(
+    val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(
         MOD_ID
     )
 
@@ -45,8 +45,31 @@ object MystcraftItems {
         )
     })
 
+    val BLUE_CRYSTAL: DeferredItem<Item> = ITEMS.registerSimpleItem(
+        "blue_crystal",
+        Item.Properties().stacksTo(64)
+    )
 
+    val YELLOW_CRYSTAL: DeferredItem<Item> = ITEMS.registerSimpleItem(
+        "yellow_crystal",
+        Item.Properties().stacksTo(64)
+    )
 
+    val GREEN_CRYSTAL: DeferredItem<Item> = ITEMS.registerSimpleItem(
+        "green_crystal",
+        Item.Properties().stacksTo(64)
+    )
+
+    val PINK_CRYSTAL: DeferredItem<Item> = ITEMS.registerSimpleItem(
+        "pink_crystal",
+        Item.Properties().stacksTo(64)
+    )
+
+    val RED_CRYSTAL: DeferredItem<Item> = ITEMS.registerSimpleItem(
+        "red_crystal",
+        Item.Properties().stacksTo(64)
+    )
+    
     fun register(eventBus: IEventBus) {
         ITEMS.register(eventBus)
     }

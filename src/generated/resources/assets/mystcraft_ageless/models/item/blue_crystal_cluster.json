@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mystcraft_ageless:block/crystal_cluster/blue/blue_crystal_cluster"
+  }
+}

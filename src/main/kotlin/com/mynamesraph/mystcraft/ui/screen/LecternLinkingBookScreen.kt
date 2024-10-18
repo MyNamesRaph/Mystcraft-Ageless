@@ -1,6 +1,6 @@
 package com.mynamesraph.mystcraft.ui.screen
 
-import com.mynamesraph.mystcraft.networking.packet.LinkingBookLecternTravelPacket
+import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookLecternTravelPacket
 import com.mynamesraph.mystcraft.ui.menu.LinkingBookMenu
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics

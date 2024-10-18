@@ -1,7 +1,6 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
-import com.mynamesraph.mystcraft.registry.MystcraftItems.LINKING_BOOK
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
@@ -21,11 +20,17 @@ object MystcraftTabs {
     val MYSTCRAFT_TAB: DeferredHolder<CreativeModeTab, CreativeModeTab> = CREATIVE_MODE_TABS.register("mystcraft_ageless_tab",
         Supplier {
             CreativeModeTab.builder()
-                .title(Component.translatable("itemGroup.mystcraft_ageless")) //The language key for the title of your CreativeModeTab
+                .title(Component.translatable("itemGroup.mystcraft_ageless"))
                 .withTabsBefore(CreativeModeTabs.COMBAT)
-                .icon { LINKING_BOOK.get().defaultInstance }
+                .icon { MystcraftItems.LINKING_BOOK.get().defaultInstance }
                 .displayItems { parameters: ItemDisplayParameters?, output: CreativeModeTab.Output ->
-                    output.accept(LINKING_BOOK.get()) // Add the example item to the tab. For your own tabs, this method is preferred over the event
+                    output.accept(MystcraftItems.LINKING_BOOK.get())
+                    /*output.accept(MystcraftBlocks.BLUE_CRYSTAL_BLOCK)
+                    output.accept(MystcraftBlocks.BUDDING_BLUE_CRYSTAL)*/
+
+                    for (block in MystcraftItems.ITEMS.entries) {
+                        output.accept(block.get())
+                    }
                 }.build()
         })
 

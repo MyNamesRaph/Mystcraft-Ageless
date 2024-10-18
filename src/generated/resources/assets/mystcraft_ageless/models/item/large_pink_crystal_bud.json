@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/amethyst_bud",
+  "textures": {
+    "layer0": "mystcraft_ageless:block/crystal_cluster/pink/large_pink_crystal_bud"
+  }
+}

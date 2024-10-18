@@ -1,9 +1,9 @@
 package com.mynamesraph.mystcraft
 
 import com.mojang.logging.LogUtils
-import com.mynamesraph.mystcraft.networking.handlers.MystCraftServerPayloadHandler
-import com.mynamesraph.mystcraft.networking.packet.LinkingBookLecternTravelPacket
-import com.mynamesraph.mystcraft.networking.packet.LinkingBookTravelPacket
+import com.mynamesraph.mystcraft.data.networking.handlers.MystCraftServerPayloadHandler
+import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookLecternTravelPacket
+import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookTravelPacket
 import com.mynamesraph.mystcraft.registry.*
 import com.mynamesraph.mystcraft.registry.MystcraftMenus.LINKING_BOOK_MENU
 import com.mynamesraph.mystcraft.ui.screen.LecternLinkingBookScreen
@@ -32,9 +32,7 @@ import java.util.function.Consumer
 class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
     companion object {
         const val MOD_ID = "mystcraft_ageless"
-        private val LOGGER = LogUtils.getLogger();
-
-
+        private val LOGGER = LogUtils.getLogger()
 
         // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
         @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = [Dist.CLIENT])
