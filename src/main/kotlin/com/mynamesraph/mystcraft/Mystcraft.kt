@@ -1,6 +1,7 @@
 package com.mynamesraph.mystcraft
 
 import com.mojang.logging.LogUtils
+import com.mynamesraph.mystcraft.block.portal.LinkPortalBlock
 import com.mynamesraph.mystcraft.data.networking.handlers.MystCraftServerPayloadHandler
 import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookLecternTravelPacket
 import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookTravelPacket
@@ -8,9 +9,14 @@ import com.mynamesraph.mystcraft.registry.*
 import com.mynamesraph.mystcraft.registry.MystcraftMenus.LINKING_BOOK_MENU
 import com.mynamesraph.mystcraft.ui.screen.LecternLinkingBookScreen
 import net.minecraft.client.Minecraft
+import net.minecraft.client.color.block.BlockColor
+import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
+import net.minecraft.world.level.BlockAndTintGetter
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.bus.api.SubscribeEvent
@@ -20,6 +26,7 @@ import net.neoforged.fml.common.Mod
 import net.neoforged.fml.config.ModConfig
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent
 import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.server.ServerStartingEvent
@@ -63,6 +70,21 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
             fun registerScreens(event: RegisterMenuScreensEvent) {
                 event.register(LINKING_BOOK_MENU.get(),::LecternLinkingBookScreen)
             }
+
+            @SubscribeEvent
+            fun registerBlockColorHandlers(event: RegisterColorHandlersEvent.Block) {
+                event.register(
+                    { blockState: BlockState, _: BlockAndTintGetter?, _: BlockPos?, _: Int ->
+                        if (blockState.block is LinkPortalBlock) {
+                            blockState.getValue(LinkPortalBlock.COLOR).textColor
+                        }
+                        else {
+                            DyeColor.BLACK.textColor
+                        }
+                    },
+                MystcraftBlocks.LINK_PORTAL.get()
+                )
+            }
         }
 
         @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = [Dist.DEDICATED_SERVER])
@@ -100,6 +122,7 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
         MystcraftBlocks.register(modEventBus)
         MystcraftComponents.register(modEventBus)
         MystcraftItems.register(modEventBus)
+        MystcraftBlockEntities.register(modEventBus)
         MystcraftTabs.register(modEventBus)
         MystcraftMenus.register(modEventBus)
         MystcraftRecipes.register(modEventBus)

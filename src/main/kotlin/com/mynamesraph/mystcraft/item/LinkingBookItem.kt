@@ -1,23 +1,41 @@
 package com.mynamesraph.mystcraft.item
 
 import com.mynamesraph.mystcraft.component.LocationComponent
+import com.mynamesraph.mystcraft.component.LocationDisplayComponent
 import com.mynamesraph.mystcraft.component.RotationComponent
 import com.mynamesraph.mystcraft.registry.MystcraftComponents
+import com.mynamesraph.mystcraft.ui.screen.LecternLinkingBookScreen
 import com.mynamesraph.mystcraft.ui.screen.LinkingBookScreen
 import net.minecraft.client.Minecraft
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.RelativeMovement
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.portal.DimensionTransition
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 
 class LinkingBookItem(properties: Properties) : Item(properties) {
+
+
+    override fun appendHoverText(
+        stack: ItemStack,
+        context: TooltipContext,
+        tooltipComponents: MutableList<Component>,
+        tooltipFlag: TooltipFlag
+    ) {
+        val display = stack.components.get(MystcraftComponents.LOCATION_DISPLAY_COMPONENT.get())
+
+        if (display is LocationDisplayComponent) {
+            tooltipComponents.add(display.name)
+        }
+    }
 
     override fun use(level: Level, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack> {
         openScreen(level,player,usedHand)
@@ -30,7 +48,8 @@ class LinkingBookItem(properties: Properties) : Item(properties) {
                 .setScreen(
                     LinkingBookScreen(
                         Component.literal("linking_book_screen"),
-                        usedHand
+                        usedHand,
+                        player
                     )
                 )
         }
@@ -47,7 +66,7 @@ class LinkingBookItem(properties: Properties) : Item(properties) {
         }
     }
 
-    fun teleportToLocationFromLectern(level: Level, player: Player,location: LocationComponent,rotation: RotationComponent) {
+    fun teleportToLocationFromLectern(level: Level, entity: Entity,location: LocationComponent,rotation: RotationComponent) {
         if(!level.isClientSide()) {
             var locationLevel:ServerLevel? = level.server!!.getLevel(location.levelKey)
             if (locationLevel == null) {
@@ -57,11 +76,11 @@ class LinkingBookItem(properties: Properties) : Item(properties) {
 
                 if (locationLevel!!.level != level) {
                     System.err.println("Safely teleporting player to the overworld!")
-                    player.changeDimension(
+                    entity.changeDimension(
                         DimensionTransition(
                             locationLevel,
                             locationLevel.sharedSpawnPos.toVec3(),
-                            player.deltaMovement,
+                            entity.deltaMovement,
                             0.0f,
                             0.0f,
                             DimensionTransition.DO_NOTHING
@@ -72,11 +91,11 @@ class LinkingBookItem(properties: Properties) : Item(properties) {
             }
 
             if (locationLevel.level != level) {
-                player.changeDimension(
+                entity.changeDimension(
                     DimensionTransition(
                         locationLevel,
                         location.position.toVec3(),
-                        player.deltaMovement,
+                        entity.deltaMovement,
                         rotation.rotY,
                         rotation.rotX,
                         DimensionTransition.DO_NOTHING
@@ -84,7 +103,7 @@ class LinkingBookItem(properties: Properties) : Item(properties) {
                 )
             }
             else {
-                player.teleportTo(
+                entity.teleportTo(
                     locationLevel,
                     location.position.x.toDouble(),
                     location.position.y.toDouble(),

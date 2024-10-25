@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters
 import net.minecraft.world.item.CreativeModeTabs
+import net.minecraft.world.item.Items
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
@@ -24,12 +25,10 @@ object MystcraftTabs {
                 .withTabsBefore(CreativeModeTabs.COMBAT)
                 .icon { MystcraftItems.LINKING_BOOK.get().defaultInstance }
                 .displayItems { parameters: ItemDisplayParameters?, output: CreativeModeTab.Output ->
-                    output.accept(MystcraftItems.LINKING_BOOK.get())
-                    /*output.accept(MystcraftBlocks.BLUE_CRYSTAL_BLOCK)
-                    output.accept(MystcraftBlocks.BUDDING_BLUE_CRYSTAL)*/
+                    output.accept(Items.BOOK)
 
-                    for (block in MystcraftItems.ITEMS.entries) {
-                        output.accept(block.get())
+                    for (item in MystcraftItems.ITEMS.entries) {
+                        output.accept(item.get())
                     }
                 }.build()
         })

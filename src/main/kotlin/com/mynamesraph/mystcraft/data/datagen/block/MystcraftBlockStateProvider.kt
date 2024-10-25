@@ -1,21 +1,30 @@
 package com.mynamesraph.mystcraft.data.datagen.block
 
 import com.mynamesraph.mystcraft.Mystcraft
-import com.mynamesraph.mystcraft.block.CrystalColor
+import com.mynamesraph.mystcraft.block.crystal.CrystalColor
 import com.mynamesraph.mystcraft.registry.MystcraftBlocks
+import net.minecraft.client.renderer.RenderType
 import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.RotatedPillarBlock
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider
+import net.neoforged.neoforge.client.model.generators.ModelFile
+import net.neoforged.neoforge.client.model.generators.ModelFile.ExistingModelFile
+import net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import net.neoforged.neoforge.registries.DeferredBlock
 
 class MystcraftBlockStateProvider(
     output: PackOutput,
-    exFileHelper: ExistingFileHelper
+    val exFileHelper: ExistingFileHelper
 ) : BlockStateProvider(output, Mystcraft.MOD_ID, exFileHelper) {
 
     override fun registerStatesAndModels() {
+
+        portalWithItem(MystcraftBlocks.LINK_PORTAL)
+
+        //TODO: Disable AO on all of these
         registerCrystalStatesAndModels(
             MystcraftBlocks.BLUE_CRYSTAL_BLOCK,
             MystcraftBlocks.BUDDING_BLUE_CRYSTAL,
@@ -24,6 +33,16 @@ class MystcraftBlockStateProvider(
             MystcraftBlocks.LARGE_BLUE_CRYSTAL_BUD,
             MystcraftBlocks.BLUE_CRYSTAL_CLUSTER,
             CrystalColor.BLUE
+        )
+
+        directionalBlock(
+            MystcraftBlocks.BlUE_BOOK_RECEPTACLE.get(),
+            UncheckedModelFile(
+                ResourceLocation.fromNamespaceAndPath(
+                    Mystcraft.MOD_ID,
+                    "block/blue_book_receptacle",
+                )
+            )
         )
 
         registerCrystalStatesAndModels(
@@ -88,6 +107,19 @@ class MystcraftBlockStateProvider(
 
     private fun cubeWithItem(block: DeferredBlock<*>) {
         simpleBlockWithItem(block.get(),cubeAll(block.get()))
+    }
+
+    private fun portalWithItem(block: DeferredBlock<*>) {
+        simpleBlockItem(block.get(),cubeAll(block.get()))
+
+        val blockName = block.registeredName.replace("mystcraft_ageless:","")
+
+        val texture = ResourceLocation.fromNamespaceAndPath(
+            "mystcraft_ageless",
+            "block/$blockName"
+        )
+
+        simpleBlock(block.get(),models().cubeAll(blockName,texture).renderType("minecraft:"+RenderType.TRANSLUCENT.name))
     }
 
     private fun clusterBlock(block: DeferredBlock<*>, color: CrystalColor) {

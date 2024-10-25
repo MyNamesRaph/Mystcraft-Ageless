@@ -33,6 +33,7 @@ registries: HolderLookup.Provider
             MystcraftBlocks.BLUE_CRYSTAL_CLUSTER,
             MystcraftItems.BLUE_CRYSTAL
         )
+        dropSelf(MystcraftBlocks.BlUE_BOOK_RECEPTACLE.get())
 
         generateCrystalLoots(
             MystcraftBlocks.YELLOW_CRYSTAL_BLOCK,

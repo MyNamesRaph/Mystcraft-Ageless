@@ -1,11 +1,12 @@
 package com.mynamesraph.mystcraft.mixin;
 
 import com.mojang.logging.LogUtils;
+import com.mynamesraph.mystcraft.component.LocationDisplayComponent;
 import com.mynamesraph.mystcraft.item.LinkingBookItem;
+import com.mynamesraph.mystcraft.registry.MystcraftComponents;
 import com.mynamesraph.mystcraft.registry.MystcraftItems;
 import com.mynamesraph.mystcraft.ui.menu.LinkingBookMenu;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -84,12 +85,17 @@ public class LecternBlockMixin extends Block {
             var linkingBook = lecternBE.getBook().getItem();
 
             if (linkingBook instanceof LinkingBookItem) {
-                serverPlayer.openMenu(new SimpleMenuProvider(
-                        ((containerId, playerInventory, player) -> new LinkingBookMenu(containerId,playerInventory,pos)),
-                        Component.translatable("menu.title.mystcraft.linking_book_menu")),
-                        pos
-                );
+                var locationDisplay = lecternBE.getBook().getComponents().get(MystcraftComponents.INSTANCE.getLOCATION_DISPLAY_COMPONENT().get());
 
+                if (locationDisplay instanceof LocationDisplayComponent) {
+                    serverPlayer.openMenu(
+                            new SimpleMenuProvider(
+                                ((containerId, playerInventory, player) -> new LinkingBookMenu(containerId,playerInventory,pos)),
+                                locationDisplay.getName()
+                            ),
+                            pos
+                    );
+                }
 
                 serverPlayer.awardStat(Stats.INTERACT_WITH_LECTERN);
             }

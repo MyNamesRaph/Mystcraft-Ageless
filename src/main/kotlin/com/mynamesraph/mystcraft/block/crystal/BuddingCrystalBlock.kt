@@ -1,4 +1,4 @@
-package com.mynamesraph.mystcraft.block
+package com.mynamesraph.mystcraft.block.crystal
 
 import com.mynamesraph.mystcraft.registry.MystcraftBlocks
 import net.minecraft.core.BlockPos

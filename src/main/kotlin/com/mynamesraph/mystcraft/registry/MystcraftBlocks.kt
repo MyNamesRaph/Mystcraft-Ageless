@@ -1,10 +1,9 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
-import com.mynamesraph.mystcraft.block.BuddingCrystalBlock
-import com.mynamesraph.mystcraft.block.CrystalBlock
-import com.mynamesraph.mystcraft.block.CrystalClusterBlock
-import com.mynamesraph.mystcraft.block.CrystalColor
+import com.mynamesraph.mystcraft.block.crystal.*
+import com.mynamesraph.mystcraft.block.portal.BookReceptacleBlock
+import com.mynamesraph.mystcraft.block.portal.LinkPortalBlock
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
@@ -21,6 +20,17 @@ object MystcraftBlocks {
         MOD_ID
     )
 
+    val LINK_PORTAL: DeferredBlock<Block> = BLOCKS.register(
+        "link_portal",
+        Supplier {
+            LinkPortalBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_PORTAL).noLootTable().randomTicks())
+        }
+    )
+
+    val LINK_PORTAL_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
+        "link_portal",
+        LINK_PORTAL
+    )
     
     ///////////////////
     // BLUE CRYSTAL //
@@ -117,6 +127,19 @@ object MystcraftBlocks {
         "blue_crystal_cluster",
         BLUE_CRYSTAL_CLUSTER
     )
+
+    val BlUE_BOOK_RECEPTACLE: DeferredBlock<Block> = BLOCKS.register(
+        "blue_book_receptacle",
+        Supplier {
+            BookReceptacleBlock(BlockBehaviour.Properties.ofFullCopy(BLUE_CRYSTAL_BLOCK.get()).noOcclusion())
+        }
+    )
+
+    val BLUE_BOOK_RECEPTACLE_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
+        "blue_book_receptacle",
+        BlUE_BOOK_RECEPTACLE
+    )
+
     //////////////////////////////////////////////////////////////
 
     ///////////////////
@@ -508,7 +531,7 @@ object MystcraftBlocks {
         RED_CRYSTAL_CLUSTER
     )
     //////////////////////////////////////////////////////////////
-    
+
     fun register(eventBus: IEventBus) {
         BLOCKS.register(eventBus)
     }

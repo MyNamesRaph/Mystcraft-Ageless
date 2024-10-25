@@ -1,4 +1,4 @@
-package com.mynamesraph.mystcraft.block
+package com.mynamesraph.mystcraft.block.crystal
 
 import net.minecraft.world.level.block.AmethystClusterBlock
 import net.minecraft.world.level.block.state.properties.BlockStateProperties

@@ -2,14 +2,19 @@ package com.mynamesraph.mystcraft.crafting.recipe
 
 import com.mojang.logging.LogUtils
 import com.mynamesraph.mystcraft.component.LocationComponent
+import com.mynamesraph.mystcraft.component.LocationDisplayComponent
 import com.mynamesraph.mystcraft.component.RotationComponent
 import com.mynamesraph.mystcraft.crafting.input.PlayerCraftingInput
 import com.mynamesraph.mystcraft.registry.MystcraftComponents
 import com.mynamesraph.mystcraft.registry.MystcraftRecipes
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.NonNullList
+import net.minecraft.core.component.DataComponents
 import net.minecraft.core.component.PatchedDataComponentMap
+import net.minecraft.network.chat.Component
+import net.minecraft.network.chat.Style
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.component.ItemLore
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
@@ -64,6 +69,23 @@ class LocationalShapelessRecipe(
                 RotationComponent(
                     input.player!!.xRot,
                     input.player.yRot
+                )
+            )
+        }
+        else {
+            LogUtils.getLogger().error(
+                "Attempted to craft an item that does not have a ${RotationComponent::class.simpleName} with a ${this::class.simpleName}." +
+                        "Please add the component as a default component to the item before using this recipe."
+            )
+        }
+
+        if (patchedComponents.get(MystcraftComponents.LOCATION_DISPLAY_COMPONENT.get()) != null) {
+            patchedComponents.set(
+                MystcraftComponents.LOCATION_DISPLAY_COMPONENT.get(),
+                LocationDisplayComponent(
+                    Component.translatable(input.player!!.level().dimension().location().toLanguageKey())
+                        .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA)
+                    )
                 )
             )
         }

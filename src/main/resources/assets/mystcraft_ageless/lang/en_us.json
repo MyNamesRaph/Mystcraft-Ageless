@@ -1,4 +1,10 @@
 {
+    "minecraft.overworld": "Overworld",
+    "minecraft.the_nether": "The Nether",
+    "minecraft.the_end": "The End",
+
+    "message.mystcraft_ageless.no_same_dimension_travel": "This book may not be used to travel to the same dimension.",
+
     "itemGroup.mystcraft_ageless": "Mystcraft Items",
     "item.mystcraft_ageless.linking_book": "Linking Book",
     "menu.title.mystcraft.linking_book_menu": "Linking Book Menu",

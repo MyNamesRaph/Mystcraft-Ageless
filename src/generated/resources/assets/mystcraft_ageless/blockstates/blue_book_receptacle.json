@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle"
+    },
+    "facing=west": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,7 +1,7 @@
 package com.mynamesraph.mystcraft.data.datagen.item
 
 import com.mynamesraph.mystcraft.Mystcraft
-import com.mynamesraph.mystcraft.block.CrystalColor
+import com.mynamesraph.mystcraft.block.crystal.CrystalColor
 import com.mynamesraph.mystcraft.registry.MystcraftBlocks
 import com.mynamesraph.mystcraft.registry.MystcraftItems
 import net.minecraft.data.PackOutput
@@ -31,6 +31,8 @@ class MystcraftItemModelProvider(
             MystcraftBlocks.BLUE_CRYSTAL_CLUSTER,
             CrystalColor.BLUE
         )
+
+        simpleBlockItem(MystcraftBlocks.BlUE_BOOK_RECEPTACLE.get())
 
         registerCrystalModels(
             MystcraftItems.YELLOW_CRYSTAL,

@@ -1,0 +1,62 @@
+{
+    "minecraft.overworld": "Overworld",
+    "minecraft.the_nether": "Le Nether",
+    "minecraft.the_end": "L'End",
+
+    "message.mystcraft_ageless.no_same_dimension_travel": "Ce livre ne peut pas être utilisé pour voyager vers la même dimension.",
+
+
+    "itemGroup.mystcraft_ageless": "Items de Mystcraft",
+    "item.mystcraft_ageless.linking_book": "Livre de Linkage",
+    "menu.title.mystcraft.linking_book_menu": "Menu de livre de Linkage",
+
+    "item.mystcraft_ageless.blue_crystal": "Éclat de cristal bleu",
+    "block.mystcraft_ageless.blue_crystal_block": "Bloc de cristal bleu",
+    "block.mystcraft_ageless.budding_blue_crystal": "Druse de cristal bleu",
+    "block.mystcraft_ageless.small_blue_crystal_bud": "Petit cristal bleu",
+    "block.mystcraft_ageless.medium_blue_crystal_bud": "Cristal moyen bleu",
+    "block.mystcraft_ageless.large_blue_crystal_bud": "Grand cristal bleu",
+    "block.mystcraft_ageless.blue_crystal_cluster": "Amas de cristal bleu",
+
+
+    "item.mystcraft_ageless.yellow_crystal": "Éclat de cristal jaune",
+    "block.mystcraft_ageless.yellow_crystal_block": "Bloc de cristal jaune",
+    "block.mystcraft_ageless.budding_yellow_crystal": "Druse de cristal jaune",
+    "block.mystcraft_ageless.small_yellow_crystal_bud": "Petit cristal jaune",
+    "block.mystcraft_ageless.medium_yellow_crystal_bud": "Cristal moyen jaune",
+    "block.mystcraft_ageless.large_yellow_crystal_bud": "Grand cristal jaune",
+    "block.mystcraft_ageless.yellow_crystal_cluster": "Amas de cristal jaune",
+
+
+
+    "item.mystcraft_ageless.green_crystal": "Éclat de cristal vert",
+    "block.mystcraft_ageless.green_crystal_block": "Bloc de cristal vert",
+    "block.mystcraft_ageless.budding_green_crystal": "Druse de cristal vert",
+    "block.mystcraft_ageless.small_green_crystal_bud": "Petit cristal vert",
+    "block.mystcraft_ageless.medium_green_crystal_bud": "Cristal moyen vert",
+    "block.mystcraft_ageless.large_green_crystal_bud": "Grand cristal vert",
+    "block.mystcraft_ageless.green_crystal_cluster": "Amas de cristal vert",
+
+
+
+
+    "item.mystcraft_ageless.pink_crystal": "Éclat de cristal rose",
+    "block.mystcraft_ageless.pink_crystal_block": "Bloc de cristal rose",
+    "block.mystcraft_ageless.budding_pink_crystal": "Druse de cristal rose",
+    "block.mystcraft_ageless.small_pink_crystal_bud": "Petit cristal rose",
+    "block.mystcraft_ageless.medium_pink_crystal_bud": "Cristal moyen rose",
+    "block.mystcraft_ageless.large_pink_crystal_bud": "Grand cristal rose",
+    "block.mystcraft_ageless.pink_crystal_cluster": "Amas de cristal rose",
+    "trim_material.mystcraft_ageless.pink_crystal": "Matériel de cristal rose",
+
+
+
+
+    "item.mystcraft_ageless.red_crystal": "Éclat de cristal rouge",
+    "block.mystcraft_ageless.red_crystal_block": "Bloc de cristal rouge",
+    "block.mystcraft_ageless.budding_red_crystal": "Druse de cristal rouge",
+    "block.mystcraft_ageless.small_red_crystal_bud": "Petit cristal rouge",
+    "block.mystcraft_ageless.medium_red_crystal_bud": "Cristal moyen rouge",
+    "block.mystcraft_ageless.large_red_crystal_bud": "Grand cristal rouge",
+    "block.mystcraft_ageless.red_crystal_cluster": "Amas de cristal rouge"
+}

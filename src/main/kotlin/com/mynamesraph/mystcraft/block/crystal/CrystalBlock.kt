@@ -1,4 +1,4 @@
-package com.mynamesraph.mystcraft.block
+package com.mynamesraph.mystcraft.block.crystal
 
 import net.minecraft.world.level.block.AmethystBlock
 

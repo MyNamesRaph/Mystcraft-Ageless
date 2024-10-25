@@ -2,6 +2,7 @@ package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
 import com.mynamesraph.mystcraft.component.LocationComponent
+import com.mynamesraph.mystcraft.component.LocationDisplayComponent
 import com.mynamesraph.mystcraft.component.RotationComponent
 import com.mynamesraph.mystcraft.item.LinkingBookItem
 import com.mynamesraph.mystcraft.registry.MystcraftComponents.LOCATION_COMPONENT
@@ -29,15 +30,13 @@ object MystcraftItems {
                 .stacksTo(1)
                 .rarity(Rarity.RARE)
                 .component(
-                    DataComponents.LORE, ItemLore(
-                        listOf(
-                            Component.literal("No Location")
-                                .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA))
-                        )
+                    MystcraftComponents.LOCATION_DISPLAY_COMPONENT, LocationDisplayComponent(
+                        Component.literal("Overworld Origin")
+                            .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA))
                     )
                 )
                 .component(
-                    LOCATION_COMPONENT, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, -60.0f, 0.0f))
+                    LOCATION_COMPONENT, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
                 )
                 .component(
                     ROTATION_COMPONENT, RotationComponent(0.0f,0.0f)

@@ -1,4 +1,4 @@
-package com.mynamesraph.mystcraft.block
+package com.mynamesraph.mystcraft.block.crystal
 
 /**
  * Crystal Colors as available in Myst, except purple because that would just be glowy amethyst.
