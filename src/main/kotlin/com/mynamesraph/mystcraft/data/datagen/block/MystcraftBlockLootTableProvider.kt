@@ -23,6 +23,8 @@ class MystcraftBlockLootTableProvider(
 registries: HolderLookup.Provider
 ): BlockLootSubProvider(setOf(),FeatureFlags.REGISTRY.allFlags(),registries) {
     override fun generate() {
+        dropSelf(MystcraftBlocks.WRITING_DESK.get())
+
         generateCrystalLoots(
             MystcraftBlocks.BLUE_CRYSTAL_BLOCK,
             MystcraftBlocks.BLUE_CRYSTAL_BLOCK_ITEM,

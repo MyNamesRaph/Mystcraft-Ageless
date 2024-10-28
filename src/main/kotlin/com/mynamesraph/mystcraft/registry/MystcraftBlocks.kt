@@ -4,6 +4,7 @@ import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
 import com.mynamesraph.mystcraft.block.crystal.*
 import com.mynamesraph.mystcraft.block.portal.BookReceptacleBlock
 import com.mynamesraph.mystcraft.block.portal.LinkPortalBlock
+import com.mynamesraph.mystcraft.block.writing.WritingDeskBlock
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
@@ -18,6 +19,18 @@ import java.util.function.Supplier
 object MystcraftBlocks {
     val BLOCKS: DeferredRegister.Blocks = DeferredRegister.createBlocks(
         MOD_ID
+    )
+
+    val WRITING_DESK:DeferredBlock<Block> = BLOCKS.register(
+        "writing_desk",
+        Supplier {
+            WritingDeskBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE))
+        }
+    )
+
+    val WRITING_DESK_ITEM:DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
+        "writing_desk",
+        WRITING_DESK
     )
 
     val LINK_PORTAL: DeferredBlock<Block> = BLOCKS.register(

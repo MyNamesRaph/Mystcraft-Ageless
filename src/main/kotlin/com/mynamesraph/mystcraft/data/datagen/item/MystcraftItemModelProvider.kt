@@ -22,6 +22,10 @@ class MystcraftItemModelProvider(
 
     override fun registerModels() {
         basicItem(MystcraftItems.LINKING_BOOK.get())
+        basicItem(MystcraftItems.DESCRIPTIVE_BOOK.get())
+        basicItem(MystcraftBlocks.WRITING_DESK_ITEM.get())
+
+        simpleBlockItem(MystcraftBlocks.LINK_PORTAL.get())
 
         registerCrystalModels(
             MystcraftItems.BLUE_CRYSTAL,

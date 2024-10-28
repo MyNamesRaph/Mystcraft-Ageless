@@ -22,7 +22,7 @@ class MystcraftBlockStateProvider(
 
     override fun registerStatesAndModels() {
 
-        portalWithItem(MystcraftBlocks.LINK_PORTAL)
+        //portalWithItem(MystcraftBlocks.LINK_PORTAL)
 
         //TODO: Disable AO on all of these
         registerCrystalStatesAndModels(

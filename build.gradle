@@ -25,6 +25,7 @@ repositories {
         name = "Kotlin for Forge"
         setUrl("https://thedarkcolour.github.io/KotlinForForge/")
     }
+    maven { url "https://maven.commoble.net/" }
 }
 
 base {
@@ -34,7 +35,11 @@ base {
 // Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-//minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+minecraft {
+    accessTransformers {
+        file('src/main/resources/META-INF/accesstransformer.cfg')
+    }
+}
 //minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
 
 // Default run configurations.
@@ -105,6 +110,7 @@ dependencies {
     // Since Kotlin is its own JVM language with its own standard library, a custom language loader needs to be used, i.e. KFF
     implementation("thedarkcolour:kotlinforforge-neoforge:$kff_version")
 
+    implementation ("net.commoble.infiniverse:${infiniverse_branch}:${infiniverse_version}")
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

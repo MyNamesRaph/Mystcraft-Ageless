@@ -6,6 +6,8 @@
   "mixins": [
     "CraftingMenuMixin",
     "LecternBlockMixin",
+    "NoiseRouterDataMixin",
+    "OreVeinifierMixin",
     "ResultSlotMixin"
   ],
   "server": [],

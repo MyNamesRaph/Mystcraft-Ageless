@@ -19,6 +19,9 @@ class MystcraftBlockTagProvider(
 
     override fun addTags(provider: HolderLookup.Provider) {
 
+        tag(BlockTags.MINEABLE_WITH_AXE)
+            .add(MystcraftBlocks.WRITING_DESK.get())
+
         addCrystalBlockTags(
             MystcraftBlocks.BLUE_CRYSTAL_BLOCK,
             MystcraftBlocks.BUDDING_BLUE_CRYSTAL,

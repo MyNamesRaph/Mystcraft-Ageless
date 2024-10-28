@@ -1,9 +1,11 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
+import com.mynamesraph.mystcraft.component.DimensionIdentificatorComponent
 import com.mynamesraph.mystcraft.component.LocationComponent
 import com.mynamesraph.mystcraft.component.LocationDisplayComponent
 import com.mynamesraph.mystcraft.component.RotationComponent
+import com.mynamesraph.mystcraft.item.DescriptiveBookItem
 import com.mynamesraph.mystcraft.item.LinkingBookItem
 import com.mynamesraph.mystcraft.registry.MystcraftComponents.LOCATION_COMPONENT
 import com.mynamesraph.mystcraft.registry.MystcraftComponents.ROTATION_COMPONENT
@@ -18,31 +20,64 @@ import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
 import org.joml.Vector3f
+import java.util.function.Supplier
 
 object MystcraftItems {
     val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(
         MOD_ID
     )
 
-    val LINKING_BOOK: DeferredItem<Item> = ITEMS.register("linking_book", fun(): LinkingBookItem {
-        return LinkingBookItem(
-            Item.Properties()
-                .stacksTo(1)
-                .rarity(Rarity.RARE)
-                .component(
-                    MystcraftComponents.LOCATION_DISPLAY_COMPONENT, LocationDisplayComponent(
-                        Component.literal("Overworld Origin")
-                            .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA))
+    val LINKING_BOOK: DeferredItem<Item> = ITEMS.register(
+        "linking_book",
+        Supplier {
+            LinkingBookItem(
+                Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE)
+                    .component(
+                        MystcraftComponents.LOCATION_DISPLAY_COMPONENT,
+                        LocationDisplayComponent(
+                            Component.literal("Overworld Origin")
+                                .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA))
+                        )
                     )
-                )
-                .component(
-                    LOCATION_COMPONENT, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
-                )
-                .component(
-                    ROTATION_COMPONENT, RotationComponent(0.0f,0.0f)
-                )
-        )
-    })
+                    .component(
+                        LOCATION_COMPONENT, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
+                    )
+                    .component(
+                        ROTATION_COMPONENT, RotationComponent(0.0f,0.0f)
+                    )
+            )
+        }
+    )
+
+    val DESCRIPTIVE_BOOK: DeferredItem<Item> = ITEMS.register(
+        "descriptive_book",
+        Supplier {
+            DescriptiveBookItem(
+                Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.EPIC)
+                    .component(
+                        MystcraftComponents.DIMENSION_ID_COMPONENT,
+                        DimensionIdentificatorComponent(false)
+                    )
+                    .component(
+                        MystcraftComponents.LOCATION_DISPLAY_COMPONENT,
+                        LocationDisplayComponent(
+                            Component.literal("Unknown Age")
+                                .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA))
+                        )
+                    )
+                    .component(
+                        LOCATION_COMPONENT, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
+                    )
+                    .component(
+                        ROTATION_COMPONENT, RotationComponent(0.0f,0.0f)
+                    )
+            )
+        }
+    )
 
     val BLUE_CRYSTAL: DeferredItem<Item> = ITEMS.registerSimpleItem(
         "blue_crystal",

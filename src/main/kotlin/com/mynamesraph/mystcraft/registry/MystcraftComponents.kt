@@ -1,6 +1,7 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
+import com.mynamesraph.mystcraft.component.DimensionIdentificatorComponent
 import com.mynamesraph.mystcraft.component.LocationComponent
 import com.mynamesraph.mystcraft.component.LocationDisplayComponent
 import com.mynamesraph.mystcraft.component.RotationComponent
@@ -15,24 +16,23 @@ object MystcraftComponents {
     )
 
     val LOCATION_COMPONENT = COMPONENTS.registerComponentType("location") {
-            builder ->
-        builder
-            .persistent(LocationComponent.CODEC)
+        it.persistent(LocationComponent.CODEC)
             .networkSynchronized(LocationComponent.STREAM_CODEC)
     }
 
     val ROTATION_COMPONENT = COMPONENTS.registerComponentType("rotation") {
-            builder ->
-        builder
-            .persistent(RotationComponent.CODEC)
+        it.persistent(RotationComponent.CODEC)
             .networkSynchronized(RotationComponent.STREAM_CODEC)
     }
 
     val LOCATION_DISPLAY_COMPONENT = COMPONENTS.registerComponentType("location_display") {
-            builder ->
-        builder
-            .persistent(LocationDisplayComponent.CODEC)
+        it.persistent(LocationDisplayComponent.CODEC)
             .networkSynchronized(LocationDisplayComponent.STREAM_CODEC)
+    }
+
+    val DIMENSION_ID_COMPONENT = COMPONENTS.registerComponentType("dimension_id_component") {
+        it.persistent(DimensionIdentificatorComponent.CODEC)
+            .networkSynchronized(DimensionIdentificatorComponent.STREAM_CODEC)
     }
 
     fun register(eventBus: IEventBus) {

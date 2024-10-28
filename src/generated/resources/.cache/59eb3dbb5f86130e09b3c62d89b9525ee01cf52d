@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-23T16:34:01.9485399	Loot Tables
+// 1.21.1	2024-10-27T12:22:04.5542439	Loot Tables
 29f4fe6d48266d6e91e90175d044713bf6e1ab51 data/mystcraft_ageless/loot_table/blocks/blue_book_receptacle.json
 bb68a1e3f0bdb556c87c848325398a20a628b04d data/mystcraft_ageless/loot_table/blocks/blue_crystal_block.json
 1dbd2d866126e307dca5b7e641f8f698a91779a8 data/mystcraft_ageless/loot_table/blocks/blue_crystal_cluster.json
@@ -28,5 +28,6 @@ c807160d217002d0eeb3e0753b8448dfd0a04fd7 data/mystcraft_ageless/loot_table/block
 4d924a48aea37d91284407a64e9e799ae2d3d249 data/mystcraft_ageless/loot_table/blocks/small_pink_crystal_bud.json
 9b65acf40848b1b6b9df760bdfd9ad55304c86f3 data/mystcraft_ageless/loot_table/blocks/small_red_crystal_bud.json
 104902f035b6f495e264489f6fca8609f5d5555a data/mystcraft_ageless/loot_table/blocks/small_yellow_crystal_bud.json
+d5668d51e3d02a49f9cda176c4c5eb43ab460c43 data/mystcraft_ageless/loot_table/blocks/writing_desk.json
 58a563adc99d1fa841bf428a54779416fe2d5ad8 data/mystcraft_ageless/loot_table/blocks/yellow_crystal_block.json
 ea51dbe51e3bb8197ec0ffe058b1a09b1ab43837 data/mystcraft_ageless/loot_table/blocks/yellow_crystal_cluster.json

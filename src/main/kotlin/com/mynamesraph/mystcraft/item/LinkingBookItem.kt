@@ -21,7 +21,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.portal.DimensionTransition
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 
-class LinkingBookItem(properties: Properties) : Item(properties) {
+open class LinkingBookItem(properties: Properties) : Item(properties) {
 
 
     override fun appendHoverText(

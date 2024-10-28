@@ -40,11 +40,14 @@ class BookReceptacleBlock(properties: Properties): Block(properties),EntityBlock
         player: Player,
         hitResult: BlockHitResult
     ): InteractionResult {
-        val be = level.getBlockEntity(pos)
 
-        if (be is BookReceptacleBlockEntity && be.hasBook) {
-            val itemStack = be.removeBook()
-            player.setItemInHand(InteractionHand.MAIN_HAND,itemStack)
+        if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty) {
+            val be = level.getBlockEntity(pos)
+
+            if (be is BookReceptacleBlockEntity && be.hasBook) {
+                val itemStack = be.removeBook()
+                player.setItemInHand(InteractionHand.MAIN_HAND,itemStack)
+            }
         }
 
         return super.useWithoutItem(state, level, pos, player, hitResult)
