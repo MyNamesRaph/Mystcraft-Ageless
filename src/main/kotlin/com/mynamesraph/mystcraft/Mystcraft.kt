@@ -5,11 +5,14 @@ import com.mynamesraph.mystcraft.block.portal.LinkPortalBlock
 import com.mynamesraph.mystcraft.data.networking.handlers.MystCraftServerPayloadHandler
 import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookLecternTravelPacket
 import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookTravelPacket
+import com.mynamesraph.mystcraft.data.networking.packet.WritingDeskRenamePacket
+import com.mynamesraph.mystcraft.data.networking.packet.WritingDeskSymbolPacket
 import com.mynamesraph.mystcraft.registry.*
 import com.mynamesraph.mystcraft.registry.MystcraftMenus.LINKING_BOOK_MENU
+import com.mynamesraph.mystcraft.registry.MystcraftMenus.WRITING_DESK_MENU
 import com.mynamesraph.mystcraft.ui.screen.LecternLinkingBookScreen
+import com.mynamesraph.mystcraft.ui.screen.WritingDeskScreen
 import net.minecraft.client.Minecraft
-import net.minecraft.client.color.block.BlockColor
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.DyeColor
@@ -64,11 +67,22 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
                     LinkingBookLecternTravelPacket.STREAM_CODEC,
                     MystCraftServerPayloadHandler::handleLecternLinkingBookButtonPressed
                 )
+                payloadRegistrar.playToServer(
+                    WritingDeskRenamePacket.TYPE,
+                    WritingDeskRenamePacket.STREAM_CODEC,
+                    MystCraftServerPayloadHandler::handleWritingDeskRenamedBook
+                )
+                payloadRegistrar.playToServer(
+                    WritingDeskSymbolPacket.TYPE,
+                    WritingDeskSymbolPacket.STREAM_CODEC,
+                    MystCraftServerPayloadHandler::handleWritingDeskAddingSymbol
+                )
             }
 
             @SubscribeEvent
             fun registerScreens(event: RegisterMenuScreensEvent) {
                 event.register(LINKING_BOOK_MENU.get(),::LecternLinkingBookScreen)
+                event.register(WRITING_DESK_MENU.get(),::WritingDeskScreen)
             }
 
             @SubscribeEvent
@@ -108,11 +122,22 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
                     LinkingBookLecternTravelPacket.STREAM_CODEC,
                     MystCraftServerPayloadHandler::handleLecternLinkingBookButtonPressed
                 )
+                payloadRegistrar.playToServer(
+                    WritingDeskRenamePacket.TYPE,
+                    WritingDeskRenamePacket.STREAM_CODEC,
+                    MystCraftServerPayloadHandler::handleWritingDeskRenamedBook
+                )
+                payloadRegistrar.playToServer(
+                    WritingDeskSymbolPacket.TYPE,
+                    WritingDeskSymbolPacket.STREAM_CODEC,
+                    MystCraftServerPayloadHandler::handleWritingDeskAddingSymbol
+                )
             }
 
             @SubscribeEvent
             fun registerScreens(event: RegisterMenuScreensEvent) {
                 event.register(LINKING_BOOK_MENU.get(),::LecternLinkingBookScreen)
+                event.register(WRITING_DESK_MENU.get(),::WritingDeskScreen)
             }
         }
     }

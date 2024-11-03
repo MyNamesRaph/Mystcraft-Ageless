@@ -134,8 +134,8 @@ class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties)
                     if (book.`is`(MystcraftItems.LINKING_BOOK)) {
                         val bookItem = book.item
                         if (bookItem is LinkingBookItem) {
-                            val location = book.components.get(MystcraftComponents.LOCATION_COMPONENT.get())
-                            val rotation = book.components.get(MystcraftComponents.ROTATION_COMPONENT.get())
+                            val location = book.components.get(MystcraftComponents.LOCATION.get())
+                            val rotation = book.components.get(MystcraftComponents.ROTATION.get())
 
                             if (location is LocationComponent && rotation is RotationComponent) {
                                 return bookItem.teleportToLocationFromLectern(level,entity,location,rotation)

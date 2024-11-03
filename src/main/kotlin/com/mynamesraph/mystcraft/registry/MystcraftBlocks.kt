@@ -1,7 +1,10 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
-import com.mynamesraph.mystcraft.block.crystal.*
+import com.mynamesraph.mystcraft.block.crystal.BuddingCrystalBlock
+import com.mynamesraph.mystcraft.block.crystal.CrystalBlock
+import com.mynamesraph.mystcraft.block.crystal.CrystalClusterBlock
+import com.mynamesraph.mystcraft.block.crystal.CrystalColor
 import com.mynamesraph.mystcraft.block.portal.BookReceptacleBlock
 import com.mynamesraph.mystcraft.block.portal.LinkPortalBlock
 import com.mynamesraph.mystcraft.block.writing.WritingDeskBlock
@@ -141,7 +144,7 @@ object MystcraftBlocks {
         BLUE_CRYSTAL_CLUSTER
     )
 
-    val BlUE_BOOK_RECEPTACLE: DeferredBlock<Block> = BLOCKS.register(
+    val BLUE_BOOK_RECEPTACLE: DeferredBlock<Block> = BLOCKS.register(
         "blue_book_receptacle",
         Supplier {
             BookReceptacleBlock(BlockBehaviour.Properties.ofFullCopy(BLUE_CRYSTAL_BLOCK.get()).noOcclusion())
@@ -150,7 +153,7 @@ object MystcraftBlocks {
 
     val BLUE_BOOK_RECEPTACLE_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
         "blue_book_receptacle",
-        BlUE_BOOK_RECEPTACLE
+        BLUE_BOOK_RECEPTACLE
     )
 
     //////////////////////////////////////////////////////////////
@@ -250,6 +253,18 @@ object MystcraftBlocks {
         "yellow_crystal_cluster",
         YELLOW_CRYSTAL_CLUSTER
     )
+
+    val YELLOW_BOOK_RECEPTACLE: DeferredBlock<Block> = BLOCKS.register(
+        "yellow_book_receptacle",
+        Supplier {
+            BookReceptacleBlock(BlockBehaviour.Properties.ofFullCopy(YELLOW_CRYSTAL_BLOCK.get()).noOcclusion())
+        }
+    )
+
+    val YELLOW_BOOK_RECEPTACLE_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
+        "yellow_book_receptacle",
+        YELLOW_BOOK_RECEPTACLE
+    )
     //////////////////////////////////////////////////////////////
 
     ///////////////////
@@ -347,6 +362,18 @@ object MystcraftBlocks {
         "green_crystal_cluster",
         GREEN_CRYSTAL_CLUSTER
     )
+
+    val GREEN_BOOK_RECEPTACLE: DeferredBlock<Block> = BLOCKS.register(
+        "green_book_receptacle",
+        Supplier {
+            BookReceptacleBlock(BlockBehaviour.Properties.ofFullCopy(GREEN_CRYSTAL_BLOCK.get()).noOcclusion())
+        }
+    )
+
+    val GREEN_BOOK_RECEPTACLE_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
+        "green_book_receptacle",
+        GREEN_BOOK_RECEPTACLE
+    )
     //////////////////////////////////////////////////////////////
 
     ///////////////////
@@ -443,6 +470,18 @@ object MystcraftBlocks {
     val PINK_CRYSTAL_CLUSTER_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
         "pink_crystal_cluster",
         PINK_CRYSTAL_CLUSTER
+    )
+
+    val PINK_BOOK_RECEPTACLE: DeferredBlock<Block> = BLOCKS.register(
+        "pink_book_receptacle",
+        Supplier {
+            BookReceptacleBlock(BlockBehaviour.Properties.ofFullCopy(PINK_CRYSTAL_BLOCK.get()).noOcclusion())
+        }
+    )
+
+    val PINK_BOOK_RECEPTACLE_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
+        "pink_book_receptacle",
+        PINK_BOOK_RECEPTACLE
     )
     //////////////////////////////////////////////////////////////
 
@@ -542,6 +581,18 @@ object MystcraftBlocks {
     val RED_CRYSTAL_CLUSTER_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
         "red_crystal_cluster",
         RED_CRYSTAL_CLUSTER
+    )
+
+    val RED_BOOK_RECEPTACLE: DeferredBlock<Block> = BLOCKS.register(
+        "red_book_receptacle",
+        Supplier {
+            BookReceptacleBlock(BlockBehaviour.Properties.ofFullCopy(RED_CRYSTAL_BLOCK.get()).noOcclusion())
+        }
+    )
+
+    val RED_BOOK_RECEPTACLE_ITEM: DeferredItem<BlockItem> = MystcraftItems.ITEMS.registerSimpleBlockItem(
+        "red_book_receptacle",
+        RED_BOOK_RECEPTACLE
     )
     //////////////////////////////////////////////////////////////
 

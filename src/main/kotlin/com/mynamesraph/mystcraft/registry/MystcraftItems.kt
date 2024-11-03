@@ -1,21 +1,18 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
-import com.mynamesraph.mystcraft.component.DimensionIdentificatorComponent
-import com.mynamesraph.mystcraft.component.LocationComponent
-import com.mynamesraph.mystcraft.component.LocationDisplayComponent
-import com.mynamesraph.mystcraft.component.RotationComponent
+import com.mynamesraph.mystcraft.component.*
 import com.mynamesraph.mystcraft.item.DescriptiveBookItem
 import com.mynamesraph.mystcraft.item.LinkingBookItem
-import com.mynamesraph.mystcraft.registry.MystcraftComponents.LOCATION_COMPONENT
-import com.mynamesraph.mystcraft.registry.MystcraftComponents.ROTATION_COMPONENT
-import net.minecraft.core.component.DataComponents
+import com.mynamesraph.mystcraft.item.NotebookItem
+import com.mynamesraph.mystcraft.registry.MystcraftComponents.LOCATION
+import com.mynamesraph.mystcraft.registry.MystcraftComponents.ROTATION
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Style
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Rarity
-import net.minecraft.world.item.component.ItemLore
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
@@ -27,6 +24,23 @@ object MystcraftItems {
         MOD_ID
     )
 
+    val NOTEBOOK: DeferredItem<Item> = ITEMS.register(
+        "notebook",
+        Supplier {
+            NotebookItem(
+                Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)
+                    .component(
+                        MystcraftComponents.BIOME_SYMBOLS,
+                        BiomeSymbolsComponent(
+                            emptyList()
+                        )
+                    )
+            )
+        }
+    )
+
     val LINKING_BOOK: DeferredItem<Item> = ITEMS.register(
         "linking_book",
         Supplier {
@@ -35,17 +49,17 @@ object MystcraftItems {
                     .stacksTo(1)
                     .rarity(Rarity.RARE)
                     .component(
-                        MystcraftComponents.LOCATION_DISPLAY_COMPONENT,
+                        MystcraftComponents.LOCATION_DISPLAY,
                         LocationDisplayComponent(
                             Component.literal("Overworld Origin")
                                 .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA))
                         )
                     )
                     .component(
-                        LOCATION_COMPONENT, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
+                        LOCATION, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
                     )
                     .component(
-                        ROTATION_COMPONENT, RotationComponent(0.0f,0.0f)
+                        ROTATION, RotationComponent(0.0f,0.0f)
                     )
             )
         }
@@ -59,21 +73,21 @@ object MystcraftItems {
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)
                     .component(
-                        MystcraftComponents.DIMENSION_ID_COMPONENT,
-                        DimensionIdentificatorComponent(false)
+                        MystcraftComponents.DIMENSION_ID,
+                        DimensionIdentificatorComponent(false,ResourceLocation.fromNamespaceAndPath(MOD_ID,"unknown_age"))
                     )
                     .component(
-                        MystcraftComponents.LOCATION_DISPLAY_COMPONENT,
+                        MystcraftComponents.LOCATION_DISPLAY,
                         LocationDisplayComponent(
-                            Component.literal("Unknown Age")
+                            Component.translatable("mystcraft_ageless.unknown_age")
                                 .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA))
                         )
                     )
                     .component(
-                        LOCATION_COMPONENT, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
+                        LOCATION, LocationComponent(ServerLevel.OVERWORLD, Vector3f(0.0f, 0.0f, 0.0f))
                     )
                     .component(
-                        ROTATION_COMPONENT, RotationComponent(0.0f,0.0f)
+                        ROTATION, RotationComponent(0.0f,0.0f)
                     )
             )
         }

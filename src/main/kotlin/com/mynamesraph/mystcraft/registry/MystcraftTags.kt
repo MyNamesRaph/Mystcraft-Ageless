@@ -11,4 +11,9 @@ object MystcraftTags {
         Registries.ITEM,
         ResourceLocation.fromNamespaceAndPath(Mystcraft.MOD_ID,"books/linking_book")
     )
+
+    val NOTEBOOK_TAG: TagKey<Item> = TagKey.create(
+        Registries.ITEM,
+        ResourceLocation.fromNamespaceAndPath(Mystcraft.MOD_ID,"books/notebook")
+    )
 }

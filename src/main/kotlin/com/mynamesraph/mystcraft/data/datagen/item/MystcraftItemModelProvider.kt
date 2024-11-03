@@ -24,6 +24,7 @@ class MystcraftItemModelProvider(
         basicItem(MystcraftItems.LINKING_BOOK.get())
         basicItem(MystcraftItems.DESCRIPTIVE_BOOK.get())
         basicItem(MystcraftBlocks.WRITING_DESK_ITEM.get())
+        basicItem(MystcraftItems.NOTEBOOK.get())
 
         simpleBlockItem(MystcraftBlocks.LINK_PORTAL.get())
 
@@ -33,10 +34,10 @@ class MystcraftItemModelProvider(
             MystcraftBlocks.MEDIUM_BLUE_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_BLUE_CRYSTAL_BUD,
             MystcraftBlocks.BLUE_CRYSTAL_CLUSTER,
-            CrystalColor.BLUE
+            CrystalColor.BLUE,
+            MystcraftBlocks.BLUE_BOOK_RECEPTACLE
         )
 
-        simpleBlockItem(MystcraftBlocks.BlUE_BOOK_RECEPTACLE.get())
 
         registerCrystalModels(
             MystcraftItems.YELLOW_CRYSTAL,
@@ -44,7 +45,9 @@ class MystcraftItemModelProvider(
             MystcraftBlocks.MEDIUM_YELLOW_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_YELLOW_CRYSTAL_BUD,
             MystcraftBlocks.YELLOW_CRYSTAL_CLUSTER,
-            CrystalColor.YELLOW
+            CrystalColor.YELLOW,
+            MystcraftBlocks.YELLOW_BOOK_RECEPTACLE
+
         )
 
         registerCrystalModels(
@@ -53,7 +56,8 @@ class MystcraftItemModelProvider(
             MystcraftBlocks.MEDIUM_GREEN_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_GREEN_CRYSTAL_BUD,
             MystcraftBlocks.GREEN_CRYSTAL_CLUSTER,
-            CrystalColor.GREEN
+            CrystalColor.GREEN,
+            MystcraftBlocks.GREEN_BOOK_RECEPTACLE
         )
 
         registerCrystalModels(
@@ -62,7 +66,8 @@ class MystcraftItemModelProvider(
             MystcraftBlocks.MEDIUM_PINK_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_PINK_CRYSTAL_BUD,
             MystcraftBlocks.PINK_CRYSTAL_CLUSTER,
-            CrystalColor.PINK
+            CrystalColor.PINK,
+            MystcraftBlocks.PINK_BOOK_RECEPTACLE
         )
 
         registerCrystalModels(
@@ -71,27 +76,29 @@ class MystcraftItemModelProvider(
             MystcraftBlocks.MEDIUM_RED_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_RED_CRYSTAL_BUD,
             MystcraftBlocks.RED_CRYSTAL_CLUSTER,
-            CrystalColor.RED
+            CrystalColor.RED,
+            MystcraftBlocks.RED_BOOK_RECEPTACLE
         )
     }
 
-    fun registerCrystalModels(
+    private fun registerCrystalModels(
         item: DeferredItem<Item>,
         small: DeferredBlock<Block>,
         medium: DeferredBlock<Block>,
         large: DeferredBlock<Block>,
         cluster: DeferredBlock<Block>,
-        color: CrystalColor
+        color: CrystalColor,
+        receptacle: DeferredBlock<Block>
     ) {
         basicItem(item.get())
         budBlockItem(small,color)
         budBlockItem(medium,color)
         budBlockItem(large,color)
         flatBlockItem(cluster,color)
-
+        simpleBlockItem(receptacle.get())
     }
 
-    fun budBlockItem(block: DeferredBlock<*>,color: CrystalColor): ItemModelBuilder {
+    private fun budBlockItem(block: DeferredBlock<*>, color: CrystalColor): ItemModelBuilder {
         val blockName = block.registeredName.replace("${Mystcraft.MOD_ID}:","")
 
         val texture = ResourceLocation.fromNamespaceAndPath(
@@ -104,7 +111,7 @@ class MystcraftItemModelProvider(
             .texture("layer0", texture)
     }
 
-    fun flatBlockItem(block: DeferredBlock<*>,color: CrystalColor): ItemModelBuilder {
+    private fun flatBlockItem(block: DeferredBlock<*>, color: CrystalColor): ItemModelBuilder {
         val blockName = block.registeredName.replace("${Mystcraft.MOD_ID}:","")
 
         val texture = ResourceLocation.fromNamespaceAndPath(

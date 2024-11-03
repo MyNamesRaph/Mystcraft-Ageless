@@ -4,18 +4,16 @@ import com.mynamesraph.mystcraft.component.LocationComponent
 import com.mynamesraph.mystcraft.component.LocationDisplayComponent
 import com.mynamesraph.mystcraft.data.networking.packet.LinkingBookTravelPacket
 import com.mynamesraph.mystcraft.registry.MystcraftComponents
-import com.mynamesraph.mystcraft.ui.GUIHelper.drawCenteredStringNoDropShadow
+import com.mynamesraph.mystcraft.ui.drawCenteredStringNoDropShadow
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.Button
-import net.minecraft.client.gui.screens.ChatScreen
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Style
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.entity.player.Player
-import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent.Chat
 import net.neoforged.neoforge.network.PacketDistributor
 
 open class LinkingBookScreen(title: Component, private val hand:InteractionHand, private val player: Player) : Screen(title) {
@@ -46,7 +44,7 @@ open class LinkingBookScreen(title: Component, private val hand:InteractionHand,
         BUTTON_Y = BACKGROUND_Y + 32
 
 
-        val locationComponent = player.getItemInHand(hand).components.get(MystcraftComponents.LOCATION_COMPONENT.get())
+        val locationComponent = player.getItemInHand(hand).components.get(MystcraftComponents.LOCATION.get())
 
         if (locationComponent is LocationComponent) {
             if (player.level().dimension() == locationComponent.levelKey) {
@@ -100,7 +98,7 @@ open class LinkingBookScreen(title: Component, private val hand:InteractionHand,
     override fun renderBackground(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
         super.renderBackground(guiGraphics, mouseX, mouseY, partialTick)
 
-        val locationComponent = player.getItemInHand(hand).components.get(MystcraftComponents.LOCATION_COMPONENT.get())
+        val locationComponent = player.getItemInHand(hand).components.get(MystcraftComponents.LOCATION.get())
 
         if (locationComponent is LocationComponent) {
             if (player.level().dimension() == locationComponent.levelKey) {
@@ -112,7 +110,7 @@ open class LinkingBookScreen(title: Component, private val hand:InteractionHand,
         }
 
 
-        val titleComponent = player.getItemInHand(hand).components.get(MystcraftComponents.LOCATION_DISPLAY_COMPONENT.get())
+        val titleComponent = player.getItemInHand(hand).components.get(MystcraftComponents.LOCATION_DISPLAY.get())
         if (titleComponent is LocationDisplayComponent) {
             var unformattedTitle = titleComponent.name.copy()
             unformattedTitle = unformattedTitle.withStyle(Style.EMPTY.withColor(0x303030).withUnderlined(true).withBold(true))

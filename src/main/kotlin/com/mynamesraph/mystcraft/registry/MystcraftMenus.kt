@@ -2,6 +2,7 @@ package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
 import com.mynamesraph.mystcraft.ui.menu.LinkingBookMenu
+import com.mynamesraph.mystcraft.ui.menu.WritingDeskMenu
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.inventory.MenuType
 import net.neoforged.bus.api.IEventBus
@@ -19,6 +20,13 @@ object MystcraftMenus {
         "linking_book_menu",
         Supplier {
             IMenuTypeExtension.create(::LinkingBookMenu)
+        }
+    )
+
+    val WRITING_DESK_MENU: Supplier<MenuType<WritingDeskMenu>> = MENU_TYPES.register(
+        "writing_desk_menu",
+        Supplier {
+            IMenuTypeExtension.create(::WritingDeskMenu)
         }
     )
 

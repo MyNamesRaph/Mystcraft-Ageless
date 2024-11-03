@@ -3,6 +3,7 @@ package com.mynamesraph.mystcraft.registry
 import com.mynamesraph.mystcraft.Mystcraft
 import com.mynamesraph.mystcraft.block.portal.BookReceptacleBlockEntity
 import com.mynamesraph.mystcraft.block.portal.LinkPortalBlockEntity
+import com.mynamesraph.mystcraft.block.writing.WritingDeskBlockEntity
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.neoforged.bus.api.IEventBus
@@ -30,8 +31,21 @@ object MystcraftBlockEntities {
         Supplier {
             BlockEntityType.Builder.of(
                 ::BookReceptacleBlockEntity,
-                MystcraftBlocks.BlUE_BOOK_RECEPTACLE.get(),
-                //TODO: ADD OTHER RECEPTACLES
+                MystcraftBlocks.BLUE_BOOK_RECEPTACLE.get(),
+                MystcraftBlocks.YELLOW_BOOK_RECEPTACLE.get(),
+                MystcraftBlocks.GREEN_BOOK_RECEPTACLE.get(),
+                MystcraftBlocks.PINK_BOOK_RECEPTACLE.get(),
+                MystcraftBlocks.RED_BOOK_RECEPTACLE.get()
+            ).build(null)
+        }
+    )
+
+    val WRITING_DESK_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register(
+        "writing_desk",
+        Supplier {
+            BlockEntityType.Builder.of(
+                ::WritingDeskBlockEntity,
+                MystcraftBlocks.WRITING_DESK.get(),
             ).build(null)
         }
     )

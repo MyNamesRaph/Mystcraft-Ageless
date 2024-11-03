@@ -2,18 +2,8 @@ package com.mynamesraph.mystcraft.block.portal
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.core.Vec3i
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
-import net.minecraft.world.phys.Vec3
-import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.div
-import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.dot
-import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.minus
-import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
-import kotlin.math.ceil
-import kotlin.math.floor
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 /**
  * Find all corner offsets of a free-form block frame

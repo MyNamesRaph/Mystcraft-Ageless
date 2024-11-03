@@ -110,7 +110,7 @@ large: Boolean
         NoiseRouterDataMixin.invokePostProcess(
             NoiseRouterDataMixin.invokeSlideOverworld(
                 false,
-                /*underground*/DensityFunctions.constant(64.0)
+                underground
             )
         ),
         NoiseRouterDataMixin.invokeGetFunction(

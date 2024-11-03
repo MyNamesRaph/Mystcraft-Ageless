@@ -5,9 +5,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import io.netty.buffer.ByteBuf
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
+import net.minecraft.resources.ResourceLocation
 import java.util.*
 
-class DimensionIdentificatorComponent(val generated: Boolean, val dimensionID: Int = -1) {
+class DimensionIdentificatorComponent(val generated: Boolean, val dimensionID: ResourceLocation) {
 
     override fun equals(other: Any?): Boolean {
         return if (other === this) {
@@ -25,13 +26,13 @@ class DimensionIdentificatorComponent(val generated: Boolean, val dimensionID: I
         val CODEC: Codec<DimensionIdentificatorComponent> = RecordCodecBuilder.create { instance ->
             instance.group(
                 Codec.BOOL.fieldOf("generated").forGetter(DimensionIdentificatorComponent::generated),
-                Codec.INT.fieldOf("dimension_id").forGetter(DimensionIdentificatorComponent::dimensionID)
+                ResourceLocation.CODEC.fieldOf("dimension_id").forGetter(DimensionIdentificatorComponent::dimensionID)
             ).apply(instance,::DimensionIdentificatorComponent)
         }
 
         val STREAM_CODEC: StreamCodec<ByteBuf, DimensionIdentificatorComponent> = StreamCodec.composite(
             ByteBufCodecs.BOOL, DimensionIdentificatorComponent::generated,
-            ByteBufCodecs.INT, DimensionIdentificatorComponent::dimensionID,
+            ResourceLocation.STREAM_CODEC, DimensionIdentificatorComponent::dimensionID,
             ::DimensionIdentificatorComponent
         )
     }

@@ -7,16 +7,13 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.util.Mth
 import net.minecraft.world.Container
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Block.UPDATE_ALL
-import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.entity.BlockEntity
-import net.minecraft.world.level.block.entity.LecternBlockEntity
 import net.minecraft.world.level.block.state.BlockState
 
 class BookReceptacleBlockEntity(
@@ -29,11 +26,15 @@ class BookReceptacleBlockEntity(
     val validPortalBlocks: Set<Block> by lazy {
         setOf(
             MystcraftBlocks.BLUE_CRYSTAL_BLOCK.get(),
-            MystcraftBlocks.BlUE_BOOK_RECEPTACLE.get(),
+            MystcraftBlocks.BLUE_BOOK_RECEPTACLE.get(),
             MystcraftBlocks.YELLOW_CRYSTAL_BLOCK.get(),
+            MystcraftBlocks.YELLOW_BOOK_RECEPTACLE.get(),
             MystcraftBlocks.GREEN_CRYSTAL_BLOCK.get(),
+            MystcraftBlocks.GREEN_BOOK_RECEPTACLE.get(),
             MystcraftBlocks.PINK_CRYSTAL_BLOCK.get(),
-            MystcraftBlocks.RED_CRYSTAL_BLOCK.get()
+            MystcraftBlocks.PINK_BOOK_RECEPTACLE.get(),
+            MystcraftBlocks.RED_CRYSTAL_BLOCK.get(),
+            MystcraftBlocks.RED_BOOK_RECEPTACLE.get()
         )
     }
 

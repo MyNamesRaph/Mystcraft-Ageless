@@ -1,6 +1,5 @@
 package com.mynamesraph.mystcraft.block.portal
 
-import com.mynamesraph.mystcraft.registry.MystcraftBlocks
 import com.mynamesraph.mystcraft.registry.MystcraftTags
 import net.minecraft.core.BlockPos
 import net.minecraft.world.InteractionHand
@@ -12,25 +11,30 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.*
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.DirectionalBlock
+import net.minecraft.world.level.block.EntityBlock
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.DirectionProperty
 import net.minecraft.world.phys.BlockHitResult
 
 class BookReceptacleBlock(properties: Properties): Block(properties),EntityBlock {
     companion object {
         val FACING: DirectionProperty = DirectionalBlock.FACING
+        val LOCKED = BlockStateProperties.LOCKED
     }
 
     override fun getStateForPlacement(context: BlockPlaceContext): BlockState? {
         return this.defaultBlockState()
             .setValue(FACING, context.nearestLookingDirection.opposite)
+            .setValue(LOCKED,false)
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        builder.add(FACING)
+        builder.add(FACING).add(LOCKED)
     }
 
     override fun useWithoutItem(
@@ -40,13 +44,14 @@ class BookReceptacleBlock(properties: Properties): Block(properties),EntityBlock
         player: Player,
         hitResult: BlockHitResult
     ): InteractionResult {
+        if (!state.getValue(LOCKED)) {
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty) {
+                val be = level.getBlockEntity(pos)
 
-        if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty) {
-            val be = level.getBlockEntity(pos)
-
-            if (be is BookReceptacleBlockEntity && be.hasBook) {
-                val itemStack = be.removeBook()
-                player.setItemInHand(InteractionHand.MAIN_HAND,itemStack)
+                if (be is BookReceptacleBlockEntity && be.hasBook) {
+                    val itemStack = be.removeBook()
+                    player.setItemInHand(InteractionHand.MAIN_HAND,itemStack)
+                }
             }
         }
 
@@ -62,20 +67,25 @@ class BookReceptacleBlock(properties: Properties): Block(properties),EntityBlock
         hand: InteractionHand,
         hitResult: BlockHitResult
     ): ItemInteractionResult {
-        val be = level.getBlockEntity(pos)
-        if (be is BookReceptacleBlockEntity && be.hasBook) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
+        if (!state.getValue(LOCKED)) {
+            val be = level.getBlockEntity(pos)
+            if (be is BookReceptacleBlockEntity && be.hasBook) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
 
-        if (stack.`is`(MystcraftTags.LINKING_BOOK_TAG)) {
-            return if (tryPlaceBook(player,level,stack,be))
-                ItemInteractionResult.sidedSuccess(level.isClientSide)
-            else
+            if (stack.`is`(MystcraftTags.LINKING_BOOK_TAG)) {
+                return if (tryPlaceBook(player,level,stack,be))
+                    ItemInteractionResult.sidedSuccess(level.isClientSide)
+                else
+                    ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION
+            }
+
+            return if (stack.isEmpty && hand == InteractionHand.MAIN_HAND)
                 ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION
+            else
+                ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
         }
-
-        return if (stack.isEmpty && hand == InteractionHand.MAIN_HAND)
-            ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION
-        else
-            ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
+        else {
+            return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION
+        }
     }
 
     private fun tryPlaceBook(

@@ -28,7 +28,8 @@ class MystcraftBlockTagProvider(
             MystcraftBlocks.SMALL_BLUE_CRYSTAL_BUD,
             MystcraftBlocks.MEDIUM_BLUE_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_BLUE_CRYSTAL_BUD,
-            MystcraftBlocks.BLUE_CRYSTAL_CLUSTER
+            MystcraftBlocks.BLUE_CRYSTAL_CLUSTER,
+            MystcraftBlocks.BLUE_BOOK_RECEPTACLE
         )
         
         addCrystalBlockTags(
@@ -37,7 +38,8 @@ class MystcraftBlockTagProvider(
             MystcraftBlocks.SMALL_YELLOW_CRYSTAL_BUD,
             MystcraftBlocks.MEDIUM_YELLOW_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_YELLOW_CRYSTAL_BUD,
-            MystcraftBlocks.YELLOW_CRYSTAL_CLUSTER
+            MystcraftBlocks.YELLOW_CRYSTAL_CLUSTER,
+            MystcraftBlocks.YELLOW_BOOK_RECEPTACLE
         )
 
         addCrystalBlockTags(
@@ -46,7 +48,8 @@ class MystcraftBlockTagProvider(
             MystcraftBlocks.SMALL_GREEN_CRYSTAL_BUD,
             MystcraftBlocks.MEDIUM_GREEN_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_GREEN_CRYSTAL_BUD,
-            MystcraftBlocks.GREEN_CRYSTAL_CLUSTER
+            MystcraftBlocks.GREEN_CRYSTAL_CLUSTER,
+            MystcraftBlocks.GREEN_BOOK_RECEPTACLE
         )
 
         addCrystalBlockTags(
@@ -55,7 +58,9 @@ class MystcraftBlockTagProvider(
             MystcraftBlocks.SMALL_PINK_CRYSTAL_BUD,
             MystcraftBlocks.MEDIUM_PINK_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_PINK_CRYSTAL_BUD,
-            MystcraftBlocks.PINK_CRYSTAL_CLUSTER
+            MystcraftBlocks.PINK_CRYSTAL_CLUSTER,
+            MystcraftBlocks.PINK_BOOK_RECEPTACLE
+
         )
 
         addCrystalBlockTags(
@@ -64,17 +69,19 @@ class MystcraftBlockTagProvider(
             MystcraftBlocks.SMALL_RED_CRYSTAL_BUD,
             MystcraftBlocks.MEDIUM_RED_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_RED_CRYSTAL_BUD,
-            MystcraftBlocks.RED_CRYSTAL_CLUSTER
+            MystcraftBlocks.RED_CRYSTAL_CLUSTER,
+            MystcraftBlocks.RED_BOOK_RECEPTACLE
         )
     }
 
-    fun addCrystalBlockTags(
+    private fun addCrystalBlockTags(
         block: DeferredBlock<Block>,
         budding: DeferredBlock<Block>,
         small: DeferredBlock<Block>,
         medium: DeferredBlock<Block>,
         large: DeferredBlock<Block>,
-        cluster: DeferredBlock<Block>
+        cluster: DeferredBlock<Block>,
+        receptacle: DeferredBlock<Block>
     ) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(block.get())
@@ -83,5 +90,6 @@ class MystcraftBlockTagProvider(
             .add(medium.get())
             .add(large.get())
             .add(cluster.get())
+            .add(receptacle.get())
     }
 }

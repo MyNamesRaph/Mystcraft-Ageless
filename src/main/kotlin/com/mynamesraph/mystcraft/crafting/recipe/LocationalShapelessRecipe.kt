@@ -9,12 +9,10 @@ import com.mynamesraph.mystcraft.registry.MystcraftComponents
 import com.mynamesraph.mystcraft.registry.MystcraftRecipes
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.NonNullList
-import net.minecraft.core.component.DataComponents
 import net.minecraft.core.component.PatchedDataComponentMap
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Style
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.component.ItemLore
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeSerializer
@@ -45,9 +43,9 @@ class LocationalShapelessRecipe(
         val itemStack = result.copy()
         val patchedComponents = PatchedDataComponentMap(itemStack.components)
 
-        if (patchedComponents.get(MystcraftComponents.LOCATION_COMPONENT.get()) != null) {
+        if (patchedComponents.get(MystcraftComponents.LOCATION.get()) != null) {
             patchedComponents.set(
-                MystcraftComponents.LOCATION_COMPONENT.get(),
+                MystcraftComponents.LOCATION.get(),
                 LocationComponent(
                     input.player!!.level().dimension(),
                     Vector3f(
@@ -63,9 +61,9 @@ class LocationalShapelessRecipe(
             )
         }
 
-        if (patchedComponents.get(MystcraftComponents.ROTATION_COMPONENT.get()) != null) {
+        if (patchedComponents.get(MystcraftComponents.ROTATION.get()) != null) {
             patchedComponents.set(
-                MystcraftComponents.ROTATION_COMPONENT.get(),
+                MystcraftComponents.ROTATION.get(),
                 RotationComponent(
                     input.player!!.xRot,
                     input.player.yRot
@@ -79,9 +77,9 @@ class LocationalShapelessRecipe(
             )
         }
 
-        if (patchedComponents.get(MystcraftComponents.LOCATION_DISPLAY_COMPONENT.get()) != null) {
+        if (patchedComponents.get(MystcraftComponents.LOCATION_DISPLAY.get()) != null) {
             patchedComponents.set(
-                MystcraftComponents.LOCATION_DISPLAY_COMPONENT.get(),
+                MystcraftComponents.LOCATION_DISPLAY.get(),
                 LocationDisplayComponent(
                     Component.translatable(input.player!!.level().dimension().location().toLanguageKey())
                         .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA)

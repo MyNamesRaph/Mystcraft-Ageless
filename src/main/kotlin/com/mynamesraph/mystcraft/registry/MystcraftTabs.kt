@@ -1,6 +1,8 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
+import com.mynamesraph.mystcraft.component.IsCreativeSpawnedComponent
+import net.minecraft.core.component.PatchedDataComponentMap
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
@@ -30,6 +32,18 @@ object MystcraftTabs {
                     for (item in MystcraftItems.ITEMS.entries) {
                         output.accept(item.get())
                     }
+
+                    val patchedComponents = PatchedDataComponentMap(MystcraftItems.NOTEBOOK.get().components())
+
+                    patchedComponents.set(
+                        MystcraftComponents.IS_CREATIVE_SPAWNED.get(),
+                        IsCreativeSpawnedComponent()
+                    )
+
+                    val creativeNotebook =MystcraftItems.NOTEBOOK.get().defaultInstance
+                    creativeNotebook.applyComponentsAndValidate(patchedComponents.asPatch())
+
+                    output.accept(creativeNotebook)
                 }.build()
         })
 

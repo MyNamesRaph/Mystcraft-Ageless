@@ -33,9 +33,9 @@ registries: HolderLookup.Provider
             MystcraftBlocks.MEDIUM_BLUE_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_BLUE_CRYSTAL_BUD,
             MystcraftBlocks.BLUE_CRYSTAL_CLUSTER,
-            MystcraftItems.BLUE_CRYSTAL
+            MystcraftItems.BLUE_CRYSTAL,
+            MystcraftBlocks.BLUE_BOOK_RECEPTACLE
         )
-        dropSelf(MystcraftBlocks.BlUE_BOOK_RECEPTACLE.get())
 
         generateCrystalLoots(
             MystcraftBlocks.YELLOW_CRYSTAL_BLOCK,
@@ -45,7 +45,8 @@ registries: HolderLookup.Provider
             MystcraftBlocks.MEDIUM_YELLOW_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_YELLOW_CRYSTAL_BUD,
             MystcraftBlocks.YELLOW_CRYSTAL_CLUSTER,
-            MystcraftItems.YELLOW_CRYSTAL
+            MystcraftItems.YELLOW_CRYSTAL,
+            MystcraftBlocks.YELLOW_BOOK_RECEPTACLE
         )
 
         generateCrystalLoots(
@@ -56,7 +57,8 @@ registries: HolderLookup.Provider
             MystcraftBlocks.MEDIUM_GREEN_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_GREEN_CRYSTAL_BUD,
             MystcraftBlocks.GREEN_CRYSTAL_CLUSTER,
-            MystcraftItems.GREEN_CRYSTAL
+            MystcraftItems.GREEN_CRYSTAL,
+            MystcraftBlocks.GREEN_BOOK_RECEPTACLE
         )
 
         generateCrystalLoots(
@@ -67,7 +69,8 @@ registries: HolderLookup.Provider
             MystcraftBlocks.MEDIUM_PINK_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_PINK_CRYSTAL_BUD,
             MystcraftBlocks.PINK_CRYSTAL_CLUSTER,
-            MystcraftItems.PINK_CRYSTAL
+            MystcraftItems.PINK_CRYSTAL,
+            MystcraftBlocks.PINK_BOOK_RECEPTACLE
         )
 
         generateCrystalLoots(
@@ -78,7 +81,8 @@ registries: HolderLookup.Provider
             MystcraftBlocks.MEDIUM_RED_CRYSTAL_BUD,
             MystcraftBlocks.LARGE_RED_CRYSTAL_BUD,
             MystcraftBlocks.RED_CRYSTAL_CLUSTER,
-            MystcraftItems.RED_CRYSTAL
+            MystcraftItems.RED_CRYSTAL,
+            MystcraftBlocks.RED_BOOK_RECEPTACLE
         )
     }
 
@@ -90,8 +94,10 @@ registries: HolderLookup.Provider
         medium: DeferredBlock<Block>,
         large: DeferredBlock<Block>,
         cluster: DeferredBlock<Block>,
-        item: DeferredItem<Item>
+        item: DeferredItem<Item>,
+        receptacle: DeferredBlock<Block>
     ) {
+        dropSelf(receptacle.get())
         dropSelf(block.get())
         add(budding.get(),
             dropOtherUnlessSilkTouch(

@@ -2,11 +2,23 @@
     "minecraft.overworld": "Overworld",
     "minecraft.the_nether": "The Nether",
     "minecraft.the_end": "The End",
+    "mystcraft_ageless.age": "Age %s",
+    "mystcraft_ageless.unknown_age": "Unknown Age",
 
+    "mystcraft_ageless.writing_desk.rename":  "Rename book destination.",
     "message.mystcraft_ageless.no_same_dimension_travel": "This book may not be used to travel to the same dimension.",
+
+    "mystcraft_ageless.tooltip_messages.creative_spawned": "Creative Spawned",
+    "mystcraft_ageless.tooltip_messages.biomes": "Biomes: %s",
 
     "itemGroup.mystcraft_ageless": "Mystcraft Items",
     "item.mystcraft_ageless.linking_book": "Linking Book",
+    "item.mystcraft_ageless.descriptive_book": "Descriptive Book",
+    "item.mystcraft_ageless.notebook": "Notebook",
+
+    "block.mystcraft_ageless.writing_desk": "Writing Desk",
+    "block.mystcraft_ageless.link_portal": "Link Portal",
+
     "menu.title.mystcraft.linking_book_menu": "Linking Book Menu",
 
     "item.mystcraft_ageless.blue_crystal": "Blue Crystal Shard",
@@ -16,7 +28,7 @@
     "block.mystcraft_ageless.medium_blue_crystal_bud": "Medium Blue Crystal Bud",
     "block.mystcraft_ageless.large_blue_crystal_bud": "Large Blue Crystal Bud",
     "block.mystcraft_ageless.blue_crystal_cluster": "Blue Crystal Cluster",
-
+    "block.mystcraft_ageless.blue_book_receptacle": "Blue Book Receptacle",
 
     "item.mystcraft_ageless.yellow_crystal": "Yellow Crystal Shard",
     "block.mystcraft_ageless.yellow_crystal_block": "Block of Yellow Crystal",
@@ -25,8 +37,7 @@
     "block.mystcraft_ageless.medium_yellow_crystal_bud": "Medium Yellow Crystal Bud",
     "block.mystcraft_ageless.large_yellow_crystal_bud": "Large Yellow Crystal Bud",
     "block.mystcraft_ageless.yellow_crystal_cluster": "Yellow Crystal Cluster",
-
-
+    "block.mystcraft_ageless.yellow_book_receptacle": "Yellow Book Receptacle",
 
     "item.mystcraft_ageless.green_crystal": "Green Crystal Shard",
     "block.mystcraft_ageless.green_crystal_block": "Block of Green Crystal",
@@ -35,9 +46,7 @@
     "block.mystcraft_ageless.medium_green_crystal_bud": "Medium Green Crystal Bud",
     "block.mystcraft_ageless.large_green_crystal_bud": "Large Green Crystal Bud",
     "block.mystcraft_ageless.green_crystal_cluster": "Green Crystal Cluster",
-
-
-
+    "block.mystcraft_ageless.green_book_receptacle": "Green Book Receptacle",
 
     "item.mystcraft_ageless.pink_crystal": "Pink Crystal Shard",
     "block.mystcraft_ageless.pink_crystal_block": "Block of Pink Crystal",
@@ -47,9 +56,7 @@
     "block.mystcraft_ageless.large_pink_crystal_bud": "Large Pink Crystal Bud",
     "block.mystcraft_ageless.pink_crystal_cluster": "Pink Crystal Cluster",
     "trim_material.mystcraft_ageless.pink_crystal": "Pink Crystal Material",
-
-
-
+    "block.mystcraft_ageless.pink_book_receptacle": "Pink Book Receptacle",
 
     "item.mystcraft_ageless.red_crystal": "Red Crystal Shard",
     "block.mystcraft_ageless.red_crystal_block": "Block of Red Crystal",
@@ -57,5 +64,6 @@
     "block.mystcraft_ageless.small_red_crystal_bud": "Small Red Crystal Bud",
     "block.mystcraft_ageless.medium_red_crystal_bud": "Medium Red Crystal Bud",
     "block.mystcraft_ageless.large_red_crystal_bud": "Large Red Crystal Bud",
-    "block.mystcraft_ageless.red_crystal_cluster": "Red Crystal Cluster"
+    "block.mystcraft_ageless.red_crystal_cluster": "Red Crystal Cluster",
+    "block.mystcraft_ageless.red_book_receptacle": "Red Book Receptacle"
 }

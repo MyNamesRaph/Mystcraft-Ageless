@@ -2,15 +2,10 @@ package com.mynamesraph.mystcraft.component
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import io.netty.buffer.ByteBuf
-import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.ComponentSerialization
-import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
-import net.minecraft.server.level.ServerLevel
-import net.minecraft.util.ExtraCodecs
 import java.util.*
 
 class LocationDisplayComponent(val name: Component) {

@@ -4,7 +4,6 @@ import com.mynamesraph.mystcraft.component.LocationComponent
 import com.mynamesraph.mystcraft.component.LocationDisplayComponent
 import com.mynamesraph.mystcraft.component.RotationComponent
 import com.mynamesraph.mystcraft.registry.MystcraftComponents
-import com.mynamesraph.mystcraft.ui.screen.LecternLinkingBookScreen
 import com.mynamesraph.mystcraft.ui.screen.LinkingBookScreen
 import net.minecraft.client.Minecraft
 import net.minecraft.network.chat.Component
@@ -23,6 +22,16 @@ import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 
 open class LinkingBookItem(properties: Properties) : Item(properties) {
 
+    override fun getHighlightTip(item: ItemStack, displayName: Component): Component {
+        if (item.has(MystcraftComponents.LOCATION_DISPLAY)) {
+            val display = item.components.get(MystcraftComponents.LOCATION_DISPLAY.get())
+
+            if (display is LocationDisplayComponent) {
+                return display.name.plainCopy()
+            }
+        }
+        return super.getHighlightTip(item, displayName)
+    }
 
     override fun appendHoverText(
         stack: ItemStack,
@@ -30,7 +39,7 @@ open class LinkingBookItem(properties: Properties) : Item(properties) {
         tooltipComponents: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {
-        val display = stack.components.get(MystcraftComponents.LOCATION_DISPLAY_COMPONENT.get())
+        val display = stack.components.get(MystcraftComponents.LOCATION_DISPLAY.get())
 
         if (display is LocationDisplayComponent) {
             tooltipComponents.add(display.name)
@@ -42,7 +51,7 @@ open class LinkingBookItem(properties: Properties) : Item(properties) {
         return super.use(level, player, usedHand)
     }
 
-    private fun openScreen(level:Level,player: Player,usedHand: InteractionHand) {
+    protected open fun openScreen(level:Level, player: Player, usedHand: InteractionHand) {
         if(level.isClientSide) {
             Minecraft.getInstance()
                 .setScreen(
@@ -55,10 +64,10 @@ open class LinkingBookItem(properties: Properties) : Item(properties) {
         }
     }
 
-    fun teleportToLocationFromHand(level: Level, player: Player, usedHand: InteractionHand) {
+    open fun teleportToLocationFromHand(level: Level, player: Player, usedHand: InteractionHand) {
         if(!level.isClientSide()) {
-            val location = player.getItemInHand(usedHand).get(MystcraftComponents.LOCATION_COMPONENT.get())
-            val rotation = player.getItemInHand(usedHand).get(MystcraftComponents.ROTATION_COMPONENT.get())
+            val location = player.getItemInHand(usedHand).get(MystcraftComponents.LOCATION.get())
+            val rotation = player.getItemInHand(usedHand).get(MystcraftComponents.ROTATION.get())
 
             if (location is LocationComponent && rotation is RotationComponent) {
                 teleportToLocationFromLectern(level,player,location,rotation)
@@ -66,7 +75,7 @@ open class LinkingBookItem(properties: Properties) : Item(properties) {
         }
     }
 
-    fun teleportToLocationFromLectern(level: Level, entity: Entity,location: LocationComponent,rotation: RotationComponent) {
+    open fun teleportToLocationFromLectern(level: Level, entity: Entity,location: LocationComponent,rotation: RotationComponent) {
         if(!level.isClientSide()) {
             var locationLevel:ServerLevel? = level.server!!.getLevel(location.levelKey)
             if (locationLevel == null) {

@@ -85,7 +85,7 @@ public class LecternBlockMixin extends Block {
             var linkingBook = lecternBE.getBook().getItem();
 
             if (linkingBook instanceof LinkingBookItem) {
-                var locationDisplay = lecternBE.getBook().getComponents().get(MystcraftComponents.INSTANCE.getLOCATION_DISPLAY_COMPONENT().get());
+                var locationDisplay = lecternBE.getBook().getComponents().get(MystcraftComponents.INSTANCE.getLOCATION_DISPLAY().get());
 
                 if (locationDisplay instanceof LocationDisplayComponent) {
                     serverPlayer.openMenu(

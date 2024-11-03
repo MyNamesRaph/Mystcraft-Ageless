@@ -1,10 +1,7 @@
 package com.mynamesraph.mystcraft.registry
 
 import com.mynamesraph.mystcraft.Mystcraft.Companion.MOD_ID
-import com.mynamesraph.mystcraft.component.DimensionIdentificatorComponent
-import com.mynamesraph.mystcraft.component.LocationComponent
-import com.mynamesraph.mystcraft.component.LocationDisplayComponent
-import com.mynamesraph.mystcraft.component.RotationComponent
+import com.mynamesraph.mystcraft.component.*
 import net.minecraft.core.registries.Registries
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredRegister
@@ -15,24 +12,34 @@ object MystcraftComponents {
         Registries.DATA_COMPONENT_TYPE, MOD_ID
     )
 
-    val LOCATION_COMPONENT = COMPONENTS.registerComponentType("location") {
+    val LOCATION = COMPONENTS.registerComponentType("location") {
         it.persistent(LocationComponent.CODEC)
             .networkSynchronized(LocationComponent.STREAM_CODEC)
     }
 
-    val ROTATION_COMPONENT = COMPONENTS.registerComponentType("rotation") {
+    val ROTATION = COMPONENTS.registerComponentType("rotation") {
         it.persistent(RotationComponent.CODEC)
             .networkSynchronized(RotationComponent.STREAM_CODEC)
     }
 
-    val LOCATION_DISPLAY_COMPONENT = COMPONENTS.registerComponentType("location_display") {
+    val LOCATION_DISPLAY = COMPONENTS.registerComponentType("location_display") {
         it.persistent(LocationDisplayComponent.CODEC)
             .networkSynchronized(LocationDisplayComponent.STREAM_CODEC)
     }
 
-    val DIMENSION_ID_COMPONENT = COMPONENTS.registerComponentType("dimension_id_component") {
+    val DIMENSION_ID = COMPONENTS.registerComponentType("dimension_id") {
         it.persistent(DimensionIdentificatorComponent.CODEC)
             .networkSynchronized(DimensionIdentificatorComponent.STREAM_CODEC)
+    }
+
+    val BIOME_SYMBOLS = COMPONENTS.registerComponentType("biome_symbols") {
+        it.persistent(BiomeSymbolsComponent.CODEC)
+            .networkSynchronized(BiomeSymbolsComponent.STREAM_CODEC)
+    }
+
+    val IS_CREATIVE_SPAWNED = COMPONENTS.registerComponentType("is_creative_spawned") {
+        it.persistent(IsCreativeSpawnedComponent.CODEC)
+            .networkSynchronized(IsCreativeSpawnedComponent.STREAM_CODEC)
     }
 
     fun register(eventBus: IEventBus) {

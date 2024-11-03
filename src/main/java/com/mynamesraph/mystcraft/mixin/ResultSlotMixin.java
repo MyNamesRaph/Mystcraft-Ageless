@@ -31,7 +31,7 @@ public abstract class ResultSlotMixin {
 
     @Inject(at= @At("HEAD"), method="onTake", cancellable = true)
     public void onTake(Player player, ItemStack stack, CallbackInfo ci) {
-        @Nullable LocationComponent location = stack.get(MystcraftComponents.INSTANCE.getLOCATION_COMPONENT());
+        @Nullable LocationComponent location = stack.get(MystcraftComponents.INSTANCE.getLOCATION());
 
         if (location != null) {
             this.checkTakeAchievements(stack);
