@@ -7,7 +7,6 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters
-import net.minecraft.world.item.CreativeModeTabs
 import net.minecraft.world.item.Items
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredHolder
@@ -24,7 +23,6 @@ object MystcraftTabs {
         Supplier {
             CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.mystcraft_ageless"))
-                .withTabsBefore(CreativeModeTabs.COMBAT)
                 .icon { MystcraftItems.LINKING_BOOK.get().defaultInstance }
                 .displayItems { parameters: ItemDisplayParameters?, output: CreativeModeTab.Output ->
                     output.accept(Items.BOOK)
