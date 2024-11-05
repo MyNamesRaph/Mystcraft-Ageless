@@ -24,6 +24,7 @@ import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.ModContainer
+import net.neoforged.fml.ModList
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.config.ModConfig
@@ -90,7 +91,16 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
                 event.register(
                     { blockState: BlockState, _: BlockAndTintGetter?, _: BlockPos?, _: Int ->
                         if (blockState.block is LinkPortalBlock) {
-                            blockState.getValue(LinkPortalBlock.COLOR).textColor
+                            if (ModList.get().isLoaded("past_el_palettes")) {
+                                if (blockState.getValue(LinkPortalBlock.IS_PASTEL_COLOR)) {
+                                    blockState.getValue(LinkPortalBlock.PASTEL_COLOR!!).textColor
+                                }
+                                else {
+                                    blockState.getValue(LinkPortalBlock.COLOR).textColor
+                                }
+                            } else {
+                                blockState.getValue(LinkPortalBlock.COLOR).textColor
+                            }
                         }
                         else {
                             DyeColor.BLACK.textColor

@@ -5,6 +5,8 @@ import com.mynamesraph.mystcraft.component.RotationComponent
 import com.mynamesraph.mystcraft.item.LinkingBookItem
 import com.mynamesraph.mystcraft.registry.MystcraftComponents
 import com.mynamesraph.mystcraft.registry.MystcraftItems
+import com.mynamesraph.pastelpalettes.PastelDyeColor
+import com.mynamesraph.pastelpalettes.item.PastelDyeItem
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
@@ -29,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.BooleanProperty
 import net.minecraft.world.level.block.state.properties.EnumProperty
 import net.minecraft.world.phys.BlockHitResult
+import net.neoforged.fml.ModList
 
 /**
  * Does not implement Portal because that logic is handled by the linking book
@@ -38,7 +41,18 @@ class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties)
     companion object {
         val PERSISTENT: BooleanProperty = BlockStateProperties.PERSISTENT
         val COLOR = EnumProperty.create("portal_color",DyeColor::class.java)
+        val IS_PASTEL_COLOR = BooleanProperty.create("is_pastel_color")
+        val PASTEL_COLOR: EnumProperty<PastelDyeColor>? by lazy {
+            if (ModList.get().isLoaded("past_el_palettes")) {
+                EnumProperty.create("pastel_color", PastelDyeColor::class.java)
+            }
+            else {
+                null
+            }
+        }
     }
+
+
 
     init {
         this.registerDefaultState(
@@ -57,15 +71,34 @@ class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties)
     ): ItemInteractionResult {
         val item = stack.item
         if (item is DyeItem) {
-            level.setBlock(pos,state.setValue(COLOR,item.dyeColor),Block.UPDATE_ALL)
-            stack.consume(1,player)
-            return ItemInteractionResult.SUCCESS
+            if (ModList.get().isLoaded("past_el_palettes")) {
+                level.setBlock(pos,state.setValue(COLOR,item.dyeColor),Block.UPDATE_ALL)
+                stack.consume(1,player)
+                return ItemInteractionResult.SUCCESS
+            }
+            else {
+                level.setBlock(pos,state.setValue(COLOR,item.dyeColor).setValue(IS_PASTEL_COLOR,false),Block.UPDATE_ALL)
+                stack.consume(1,player)
+                return ItemInteractionResult.SUCCESS
+            }
+
+        }
+        else if (ModList.get().isLoaded("past_el_palettes")) {
+            if (item is PastelDyeItem) {
+                level.setBlock(pos,state.setValue(PASTEL_COLOR!!,item.dyeColor).setValue(IS_PASTEL_COLOR,true),Block.UPDATE_ALL)
+                stack.consume(1,player)
+                return ItemInteractionResult.SUCCESS
+            }
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         builder.add(PERSISTENT).add(COLOR)
+
+        if (ModList.get().isLoaded("past_el_palettes")) {
+            builder.add(IS_PASTEL_COLOR).add(PASTEL_COLOR!!)
+        }
     }
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
