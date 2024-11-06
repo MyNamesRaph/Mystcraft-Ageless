@@ -5,6 +5,7 @@ import com.mynamesraph.mystcraft.component.RotationComponent
 import com.mynamesraph.mystcraft.item.LinkingBookItem
 import com.mynamesraph.mystcraft.registry.MystcraftComponents
 import com.mynamesraph.mystcraft.registry.MystcraftItems
+import com.mynamesraph.mystcraft.registry.MystcraftTags
 import com.mynamesraph.pastelpalettes.PastelDyeColor
 import com.mynamesraph.pastelpalettes.item.PastelDyeItem
 import net.minecraft.core.BlockPos
@@ -164,7 +165,7 @@ class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties)
                 if (receptacleBE is BookReceptacleBlockEntity && receptacleBE.hasBook) {
                     val book = receptacleBE.book
 
-                    if (book.`is`(MystcraftItems.LINKING_BOOK)) {
+                    if (book.`is`(MystcraftTags.LINKING_BOOK_TAG)) {
                         val bookItem = book.item
                         if (bookItem is LinkingBookItem) {
                             val location = book.components.get(MystcraftComponents.LOCATION.get())
