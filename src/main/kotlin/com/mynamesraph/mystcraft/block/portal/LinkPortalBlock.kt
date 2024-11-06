@@ -72,12 +72,13 @@ class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties)
         val item = stack.item
         if (item is DyeItem) {
             if (ModList.get().isLoaded("past_el_palettes")) {
-                level.setBlock(pos,state.setValue(COLOR,item.dyeColor),Block.UPDATE_ALL)
+                level.setBlock(pos,state.setValue(COLOR,item.dyeColor).setValue(IS_PASTEL_COLOR,false),Block.UPDATE_ALL)
                 stack.consume(1,player)
                 return ItemInteractionResult.SUCCESS
+
             }
             else {
-                level.setBlock(pos,state.setValue(COLOR,item.dyeColor).setValue(IS_PASTEL_COLOR,false),Block.UPDATE_ALL)
+                level.setBlock(pos,state.setValue(COLOR,item.dyeColor),Block.UPDATE_ALL)
                 stack.consume(1,player)
                 return ItemInteractionResult.SUCCESS
             }
