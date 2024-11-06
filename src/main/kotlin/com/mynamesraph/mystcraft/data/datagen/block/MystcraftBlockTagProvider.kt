@@ -6,6 +6,7 @@ import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.level.block.Block
+import net.neoforged.neoforge.common.Tags
 import net.neoforged.neoforge.common.data.BlockTagsProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import net.neoforged.neoforge.registries.DeferredBlock
@@ -91,5 +92,13 @@ class MystcraftBlockTagProvider(
             .add(large.get())
             .add(cluster.get())
             .add(receptacle.get())
+        tag(Tags.Blocks.BUDS)
+            .add(small.get())
+            .add(medium.get())
+            .add(large.get())
+        tag(Tags.Blocks.CLUSTERS)
+            .add(cluster.get())
+        tag(Tags.Blocks.BUDDING_BLOCKS)
+            .add(budding.get())
     }
 }

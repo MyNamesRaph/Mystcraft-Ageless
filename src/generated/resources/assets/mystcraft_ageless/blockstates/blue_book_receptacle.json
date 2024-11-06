@@ -1,27 +1,53 @@
 {
   "variants": {
-    "facing=down": {
+    "facing=down,locked=false": {
       "model": "mystcraft_ageless:block/blue_book_receptacle",
       "x": 180
     },
-    "facing=east": {
+    "facing=down,locked=true": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 180
+    },
+    "facing=east,locked=false": {
       "model": "mystcraft_ageless:block/blue_book_receptacle",
       "x": 90,
       "y": 90
     },
-    "facing=north": {
+    "facing=east,locked=true": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,locked=false": {
       "model": "mystcraft_ageless:block/blue_book_receptacle",
       "x": 90
     },
-    "facing=south": {
+    "facing=north,locked=true": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90
+    },
+    "facing=south,locked=false": {
       "model": "mystcraft_ageless:block/blue_book_receptacle",
       "x": 90,
       "y": 180
     },
-    "facing=up": {
+    "facing=south,locked=true": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,locked=false": {
       "model": "mystcraft_ageless:block/blue_book_receptacle"
     },
-    "facing=west": {
+    "facing=up,locked=true": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle"
+    },
+    "facing=west,locked=false": {
+      "model": "mystcraft_ageless:block/blue_book_receptacle",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,locked=true": {
       "model": "mystcraft_ageless:block/blue_book_receptacle",
       "x": 90,
       "y": 270
