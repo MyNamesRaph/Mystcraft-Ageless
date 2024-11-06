@@ -4,7 +4,6 @@ import com.mynamesraph.mystcraft.component.LocationComponent
 import com.mynamesraph.mystcraft.component.RotationComponent
 import com.mynamesraph.mystcraft.item.LinkingBookItem
 import com.mynamesraph.mystcraft.registry.MystcraftComponents
-import com.mynamesraph.mystcraft.registry.MystcraftItems
 import com.mynamesraph.mystcraft.registry.MystcraftTags
 import com.mynamesraph.pastelpalettes.PastelDyeColor
 import com.mynamesraph.pastelpalettes.item.PastelDyeItem
