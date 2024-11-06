@@ -78,10 +78,20 @@ class LocationalShapelessRecipe(
         }
 
         if (patchedComponents.get(MystcraftComponents.LOCATION_DISPLAY.get()) != null) {
+
+            var id = ""
+            val text = if (input.player!!.level().dimension().location().toLanguageKey().contains("mystcraft_ageless.age_")) {
+                id = input.player.level().dimension().location().toLanguageKey().removePrefix("mystcraft_ageless.age_")
+                "mystcraft_ageless.age"
+            }
+            else {
+                input.player.level().dimension().location().toLanguageKey()
+            }
+
             patchedComponents.set(
                 MystcraftComponents.LOCATION_DISPLAY.get(),
                 LocationDisplayComponent(
-                    Component.translatable(input.player!!.level().dimension().location().toLanguageKey())
+                    Component.translatable(text,id)
                         .withStyle(Style.EMPTY.withItalic(false).withColor(0xAAAAAA)
                     )
                 )
@@ -89,7 +99,7 @@ class LocationalShapelessRecipe(
         }
         else {
             LogUtils.getLogger().error(
-                "Attempted to craft an item that does not have a ${RotationComponent::class.simpleName} with a ${this::class.simpleName}." +
+                "Attempted to craft an item that does not have a ${LocationDisplayComponent::class.simpleName} with a ${this::class.simpleName}." +
                         "Please add the component as a default component to the item before using this recipe."
             )
         }
