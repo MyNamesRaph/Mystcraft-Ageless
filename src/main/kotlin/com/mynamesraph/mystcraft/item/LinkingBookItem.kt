@@ -99,29 +99,16 @@ open class LinkingBookItem(properties: Properties) : Item(properties) {
                 return
             }
 
-            if (locationLevel.level != level) {
-                entity.changeDimension(
-                    DimensionTransition(
-                        locationLevel,
-                        location.position.toVec3(),
-                        entity.deltaMovement,
-                        rotation.rotY,
-                        rotation.rotX,
-                        DimensionTransition.DO_NOTHING
-                    )
-                )
-            }
-            else {
-                entity.teleportTo(
+            entity.changeDimension(
+                DimensionTransition(
                     locationLevel,
-                    location.position.x.toDouble(),
-                    location.position.y.toDouble(),
-                    location.position.z.toDouble(),
-                    setOf<RelativeMovement>(),
+                    location.position.toVec3(),
+                    entity.deltaMovement,
                     rotation.rotY,
-                    rotation.rotX
+                    rotation.rotX,
+                    DimensionTransition.DO_NOTHING
                 )
-            }
+            )
 
         }
 
