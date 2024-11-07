@@ -3,6 +3,7 @@ package com.mynamesraph.mystcraft.block.portal
 import com.mynamesraph.mystcraft.container.SingleStackHandler
 import com.mynamesraph.mystcraft.registry.MystcraftBlockEntities
 import com.mynamesraph.mystcraft.registry.MystcraftBlocks
+import com.mynamesraph.pastelpalettes.PastelDyeColor
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.HolderLookup
@@ -15,6 +16,8 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Block.UPDATE_ALL
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
+import net.neoforged.fml.ModList
+import kotlin.random.Random
 
 class BookReceptacleBlockEntity(
     pos: BlockPos,
@@ -106,20 +109,34 @@ class BookReceptacleBlockEntity(
             if (cornersR.isSuccess) {
                 val corners = cornersR.getOrThrow()
 
-                /*for (corner in corners.withIndex()) {
-                    println("Corner ${corner.index} is ${level.getBlockState(corner.value)}")
-                }*/
-
-                val color = DyeColor.entries.random()
+                val state = if (ModList.get().isLoaded("past_el_palettes")) {
+                    val isPastel = Random.nextBoolean()
+                    if (isPastel) {
+                        MystcraftBlocks.LINK_PORTAL.get().defaultBlockState()
+                            .setValue(LinkPortalBlock.PERSISTENT, false)
+                            .setValue(LinkPortalBlock.IS_PASTEL_COLOR, true)
+                            .setValue(LinkPortalBlock.PASTEL_COLOR!!,PastelDyeColor.entries.random())
+                    }
+                    else {
+                        MystcraftBlocks.LINK_PORTAL.get().defaultBlockState()
+                            .setValue(LinkPortalBlock.PERSISTENT, false)
+                            .setValue(LinkPortalBlock.IS_PASTEL_COLOR, false)
+                            .setValue(LinkPortalBlock.COLOR,DyeColor.entries.random())
+                    }
+                }
+                else {
+                    MystcraftBlocks.LINK_PORTAL.get().defaultBlockState()
+                        .setValue(LinkPortalBlock.PERSISTENT, false)
+                        .setValue(LinkPortalBlock.COLOR,DyeColor.entries.random())
+                }
 
                 val points = findAllPointsInsidePolygon(corners)
+
                 for (point in points) {
                     if (level.getBlockState(point).isEmpty) {
                         level.setBlock(
                             point,
-                            MystcraftBlocks.LINK_PORTAL.get().defaultBlockState()
-                                .setValue(LinkPortalBlock.PERSISTENT, false)
-                                .setValue(LinkPortalBlock.COLOR,color),
+                            state,
                             UPDATE_ALL
                         )
                         val be = level.getBlockEntity(point)
