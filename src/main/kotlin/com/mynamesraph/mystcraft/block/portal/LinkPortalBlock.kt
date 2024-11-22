@@ -18,25 +18,22 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.DyeItem
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelAccessor
-import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.block.EntityBlock
-import net.minecraft.world.level.block.HalfTransparentBlock
+import net.minecraft.world.level.block.*
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.BooleanProperty
 import net.minecraft.world.level.block.state.properties.EnumProperty
+import net.minecraft.world.level.portal.DimensionTransition
 import net.minecraft.world.phys.BlockHitResult
 import net.neoforged.fml.ModList
 
-/**
- * Does not implement Portal because that logic is handled by the linking book
- */
-class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties), EntityBlock {
+
+class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties), EntityBlock, Portal {
 
     companion object {
         val PERSISTENT: BooleanProperty = BlockStateProperties.PERSISTENT
@@ -150,13 +147,22 @@ class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties)
                     }
                 }
             }
-
-
         }
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos)
     }
 
     override fun entityInside(state: BlockState, level: Level, pos: BlockPos, entity: Entity) {
+        if (entity.canUsePortal(true) && !level.isClientSide)
+        {
+            entity.setAsInsidePortal(this,pos)
+        }
+    }
+
+    override fun newBlockEntity(pos: BlockPos, state: BlockState): BlockEntity {
+        return LinkPortalBlockEntity(pos,state)
+    }
+
+    override fun getPortalDestination(level: ServerLevel, entity: Entity, pos: BlockPos): DimensionTransition? {
         if (!level.isClientSide) {
             val portalBE = level.getBlockEntity(pos)
 
@@ -172,18 +178,14 @@ class LinkPortalBlock(properties: Properties) : HalfTransparentBlock(properties)
                             val rotation = book.components.get(MystcraftComponents.ROTATION.get())
 
                             if (location is LocationComponent && rotation is RotationComponent) {
-                                return bookItem.teleportToLocationFromLectern(level,entity,location,rotation)
+                                return bookItem.getDestination(level,entity,location,rotation)
                             }
                         }
                     }
                 }
             }
-
         }
-    }
-
-    override fun newBlockEntity(pos: BlockPos, state: BlockState): BlockEntity {
-        return LinkPortalBlockEntity(pos,state)
+        return null
     }
 
 

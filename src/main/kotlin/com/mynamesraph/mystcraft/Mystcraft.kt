@@ -51,8 +51,6 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
             @SubscribeEvent
             fun onClientSetup(event: FMLClientSetupEvent?) {
                 // Some client setup code
-                LOGGER.info("HELLO FROM CLIENT SETUP")
-                LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().user.name)
             }
 
             @SubscribeEvent
@@ -116,7 +114,6 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
             @SubscribeEvent
             fun onClientSetup(event: FMLClientSetupEvent?) {
                 // Some server setup code
-                LOGGER.info("HELLO FROM SERVER SETUP")
             }
 
             @SubscribeEvent
@@ -167,18 +164,6 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
 
     private fun commonSetup(event: FMLCommonSetupEvent) {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP")
-
-        if (Config.logDirtBlock) LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT))
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber)
-
-        Config.items.forEach(Consumer { item: Item ->
-            LOGGER.info(
-                "ITEM >> {}",
-                item.toString()
-            )
-        })
     }
 
 
@@ -186,7 +171,6 @@ class Mystcraft(modEventBus: IEventBus, modContainer: ModContainer) {
     @SubscribeEvent
     fun onServerStarting(event: ServerStartingEvent) {
         // Do something when the server starts
-        LOGGER.info("HELLO from server starting")
     }
 
 

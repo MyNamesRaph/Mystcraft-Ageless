@@ -65,6 +65,7 @@ open class LinkingBookItem(properties: Properties) : Item(properties) {
 
     open fun teleportToLocationFromHand(level: Level, player: Player, usedHand: InteractionHand) {
         if(!level.isClientSide()) {
+
             val location = player.getItemInHand(usedHand).get(MystcraftComponents.LOCATION.get())
             val rotation = player.getItemInHand(usedHand).get(MystcraftComponents.ROTATION.get())
 
@@ -108,10 +109,35 @@ open class LinkingBookItem(properties: Properties) : Item(properties) {
                     DimensionTransition.DO_NOTHING
                 )
             )
-
         }
-
-
     }
 
+    open fun getDestination(level: Level, entity: Entity,location: LocationComponent,rotation: RotationComponent): DimensionTransition {
+        var locationLevel:ServerLevel? = level.server!!.getLevel(location.levelKey)
+        if (locationLevel == null) {
+            locationLevel = level.server!!.getLevel(ServerLevel.OVERWORLD)
+
+            System.err.println("Attempted teleporting to an Unknown dimension " + location.levelKey + " !")
+
+            if (locationLevel!!.level != level) {
+                System.err.println("Safely teleporting player to the overworld!")
+                return DimensionTransition(
+                        locationLevel,
+                        locationLevel.sharedSpawnPos.toVec3(),
+                        entity.deltaMovement,
+                        0.0f,
+                        0.0f,
+                        DimensionTransition.DO_NOTHING
+                    )
+            }
+        }
+         return DimensionTransition(
+                locationLevel,
+                location.position.toVec3(),
+                entity.deltaMovement,
+                rotation.rotY,
+                rotation.rotX,
+                DimensionTransition.DO_NOTHING
+        )
+    }
 }
